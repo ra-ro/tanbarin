@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">tanbarin</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_maps">Maps</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="filename_sample_jpg">filename: sample.jpg</string>
+    <string name="_59_0311">経度: 59.0311</string>
+    <string name="_130_1515666">緯度: 130.1515666</string>
+    <string name="textview">TextView</string>
+</resources>
