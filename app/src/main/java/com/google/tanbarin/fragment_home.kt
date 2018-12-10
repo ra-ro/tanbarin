@@ -56,6 +56,7 @@ class fragment_home : Fragment() {
 
             bufferedReader.lineSequence().forEach {
                 Log.d("maita", "data;" + it.split(",")[0])
+                //ccccvvvvbbbb
             }
 
         } catch (e: Exception) {
