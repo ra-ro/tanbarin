@@ -54,10 +54,9 @@ val images = listOf(
     R.drawable.d,
     R.drawable.e)
 
-data class FlowerData(val name : String, val desc: String, val imageId: Int)
-val flowers = List(names.size) { i -> FlowerData(names[i], descriptions[i], images)}
+data class openData(val name : String, val desc: String, val imageId: Int)
 data class ViewHolder(val nameTextView: TextView, val descTextView: TextView, val flowerImgView: ImageView)
-class FlowerListAdapter(context: Context, flowers: List<FlowerData>) : ArrayAdapter<FlowerData>(context, 0, flowers) {
+class listAdapter(context: Context, datas: List<openData>) : ArrayAdapter<openData>(context, 0, datas) {
     private val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
@@ -75,10 +74,10 @@ class FlowerListAdapter(context: Context, flowers: List<FlowerData>) : ArrayAdap
             holder = view.tag as ViewHolder
         }
 
-        val flower = getItem(position) as FlowerData
-        holder.nameTextView.text = flower.name
-        holder.descTextView.text = flower.desc
-        holder.flowerImgView.setImageBitmap(BitmapFactory.decodeResource(context.resources, flower.imageId))
+        val opend = getItem(position) as openData
+        holder.nameTextView.text = opend.name
+        holder.descTextView.text = opend.desc
+        holder.flowerImgView.setImageBitmap(BitmapFactory.decodeResource(context.resources, opend.imageId))
 
         return view!!
     }
@@ -118,29 +117,33 @@ class fragment_home : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val assetManager = context!!.getResources().getAssets()
-        val texts = arrayOf("abc ", "bcd", "cde", "def", "efg",
-            "fgh", "ghi", "hij", "ijk", "jkl", "klm")
-        val dataArray = arrayOf("Kotlin","Android","iOS","Swift","Java")
+        //val texts = arrayOf("abc ", "bcd", "cde", "def", "efg", "fgh", "ghi", "hij", "ijk", "jkl", "klm")
+        //val dataArray = arrayOf("Kotlin","Android","iOS","Swift","Java")
 
-        try {/*
+        try {
             val bufferedReader = BufferedReader(InputStreamReader(assetManager.open("tasteful-buildings.csv")))
+            //val flowers = List(names.size) { i -> openData(names[i], descriptions[i], images)}
+            val list = mutableListOf<openData>()
 
             //val listView = view.findViewById<ListView>(R.id.Listview)*/
             val listView =view.findViewById(R.id.listview) as ListView
-            /*
             //val listView = ListView(this)
             //setContentView(listView)
-            val adapter = ArrayAdapter<String>(activity,android.R.layout.activity_list_item)
+            //val adapter = ArrayAdapter<String>(activity,android.R.layout.activity_list_item)
             var i = 0
             bufferedReader.lineSequence().forEach {
                 Log.d("maita", "data;" + it.split(",")[0])
-                adapter.insert(it.split(",")[0],i)
+                list.add(openData( it.split(",")[0],  it.split(",")[1], images))
+                //adapter.insert(it.split(",")[0],i)
                 i++
             }
+            list.forEach {
+                Log.d("kaito", "data:" + it.name + " " + it.desc + " " + it.imageId)
+            }
 
-            listView.adapter=adapter
-*/
-            val adapter = FlowerListAdapter(activity!!, flowers)
+
+            //listView.adapter=adapter
+            val adapter = listAdapter(activity!!,list)
             listView.adapter = adapter
         } catch (e: Exception) {
             e.printStackTrace()
