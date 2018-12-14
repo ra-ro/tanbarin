@@ -2,12 +2,17 @@ package com.google.tanbarin
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,11 +35,17 @@ class fragment_home : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+        
+
+
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
@@ -49,7 +60,9 @@ class fragment_home : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val assetManager = context!!.getResources().getAssets()
-
+        val texts = arrayOf("abc ", "bcd", "cde", "def", "efg",
+            "fgh", "ghi", "hij", "ijk", "jkl", "klm")
+        val dataArray = arrayOf("Kotlin","Android","iOS","Swift","Java")
         try {
 
             val bufferedReader = BufferedReader(InputStreamReader(assetManager.open("tasteful-buildings.csv")))
@@ -58,6 +71,13 @@ class fragment_home : Fragment() {
                 Log.d("maita", "data;" + it.split(",")[0])
                 //ccccvvvvbbbb
             }
+            //val listView = view.findViewById<ListView>(R.id.Listview)
+            val listView =view.findViewById(R.id.listview) as ListView
+            //val listView = ListView(this)
+            //setContentView(listView)
+            val adapter = ArrayAdapter<String>(activity,android.R.layout.simple_list_item_1,texts)
+            listView.adapter=adapter
+
 
         } catch (e: Exception) {
             e.printStackTrace()
