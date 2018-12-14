@@ -955,6 +955,7 @@ dimen tooltip_precise_anchor_threshold
 dimen tooltip_vertical_padding
 dimen tooltip_y_offset_non_touch
 dimen tooltip_y_offset_touch
+drawable a
 drawable abc_ab_share_pack_mtrl_alpha
 drawable abc_action_bar_item_background_material
 drawable abc_btn_borderless_material
@@ -1041,6 +1042,8 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable b
+drawable c
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -1060,12 +1063,14 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable d
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable e
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_dashboard_black_24dp
@@ -1153,6 +1158,7 @@ id customPanel
 id dark
 id decor_content_parent
 id default_activity_button
+id descTextView
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -1174,6 +1180,7 @@ id fill_horizontal
 id fill_vertical
 id filled
 id fixed
+id flowerImgView
 id forever
 id frame
 id ghost_view
@@ -1188,7 +1195,6 @@ id icon_group
 id icon_only
 id ifRoom
 id image
-id imageView2
 id info
 id invisible
 id italic
@@ -1212,6 +1218,7 @@ id mini
 id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
+id nameTextView
 id navigation
 id navigation_dashboard
 id navigation_header_container
@@ -1388,7 +1395,7 @@ layout fragment_dash
 layout fragment_home
 layout fragment_maps
 layout fragment_noti
-layout image_list
+layout list_item
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
