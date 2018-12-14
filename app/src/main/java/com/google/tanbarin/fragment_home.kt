@@ -64,18 +64,20 @@ class fragment_home : Fragment() {
             "fgh", "ghi", "hij", "ijk", "jkl", "klm")
         val dataArray = arrayOf("Kotlin","Android","iOS","Swift","Java")
         try {
-
             val bufferedReader = BufferedReader(InputStreamReader(assetManager.open("tasteful-buildings.csv")))
 
-            bufferedReader.lineSequence().forEach {
-                Log.d("maita", "data;" + it.split(",")[0])
-                //ccccvvvvbbbb
-            }
             //val listView = view.findViewById<ListView>(R.id.Listview)
             val listView =view.findViewById(R.id.listview) as ListView
             //val listView = ListView(this)
             //setContentView(listView)
-            val adapter = ArrayAdapter<String>(activity,android.R.layout.simple_list_item_1,texts)
+            val adapter = ArrayAdapter<String>(activity,android.R.layout.simple_list_item_1)
+            var i = 0
+            bufferedReader.lineSequence().forEach {
+                Log.d("maita", "data;" + it.split(",")[0])
+                adapter.insert(it.split(",")[0],i)
+                i++
+            }
+
             listView.adapter=adapter
 
 

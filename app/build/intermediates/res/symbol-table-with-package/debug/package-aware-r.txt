@@ -1076,6 +1076,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_notifications_black_24dp
+drawable images
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1093,6 +1094,7 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable yui
 id ALT
 id CTRL
 id FUNCTION
@@ -1186,6 +1188,7 @@ id icon_group
 id icon_only
 id ifRoom
 id image
+id imageView2
 id info
 id invisible
 id italic
@@ -1198,6 +1201,7 @@ id line1
 id line3
 id listMode
 id list_item
+id listview
 id map
 id mapView
 id masked
@@ -1384,6 +1388,7 @@ layout fragment_dash
 layout fragment_home
 layout fragment_maps
 layout fragment_noti
+layout image_list
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
@@ -1492,6 +1497,7 @@ string title_dashboard
 string title_home
 string title_maps
 string title_notifications
+string todo
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
