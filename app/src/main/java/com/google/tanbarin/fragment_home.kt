@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
-import com.google.tanbarin.R.drawable.images
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -48,6 +47,76 @@ val descriptions = listOf(
     "バラ（薔薇）は、バラ科バラ属の総称である。あるいは、そのうち特に園芸種（園芸バラ・栽培バラ）を総称する。ここでは、後者の園芸バラ・栽培バラを扱うこととする。 バラ属の成形は、灌木、低木、または木本性のつる植物で、葉や茎に棘を持つものが多い。",
     "フジ（藤、学名: Wisteria floribunda）は、マメ科フジ属のつる性落葉木本。一般名称としての藤には、つるが右巻き（上から見て時計回り）と左巻きの二種類がある。")
 val images = listOf(
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.e,
+    R.drawable.e,
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
+    R.drawable.a,
+    R.drawable.b,
+    R.drawable.c,
+    R.drawable.d,
+    R.drawable.e,
     R.drawable.a,
     R.drawable.b,
     R.drawable.c,
@@ -133,7 +202,7 @@ class fragment_home : Fragment() {
             var i = 0
             bufferedReader.lineSequence().forEach {
                 Log.d("maita", "data;" + it.split(",")[0])
-                list.add(openData( it.split(",")[0],  it.split(",")[1], images))
+                list.add(openData( it.split(",")[0],  it.split(",")[1], images[i]))
                 //adapter.insert(it.split(",")[0],i)
                 i++
             }
