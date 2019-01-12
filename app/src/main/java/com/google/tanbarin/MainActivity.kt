@@ -44,12 +44,12 @@ class MainActivity : AppCompatActivity() {
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
-            /*R.id.navigation_maps -> {
+            R.id.navigation_maps -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.frame, fragment_maps())
                     .commit()
                 return@OnNavigationItemSelectedListener true
-            }*/
+            }
         }
         false
     }

@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
+import android.text.TextUtils.split
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,8 @@ import java.io.InputStreamReader
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.*
 import kotlinx.android.synthetic.main.list_item.view.*
+//import jdk.nashorn.internal.runtime.ScriptingFunctions.readLine
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -106,7 +109,25 @@ R.drawable.kankou26,
 
 */
 )
+/** CSVクラス定義**/
+class   Customer   {
+    var   id :   String ?   =   null
+    var   name :   String ?   =   null
+    var   address :   String ?   =   null
+    var   age :   Int   =   0
 
+    constructor ( )   { }
+    constructor ( id :   String ? ,   name :   String ? ,   address :   String ? ,   age :   Int )   {
+        this . id   =   id
+        this . name   =   name
+        this . address   =   address
+        this . age   =   age
+    }
+
+    override  fun  toString ( ) :   String   {
+        return   "Customer [id="   +   id   +   ", name="   +   name   +   ", address="   +   address   +   ", age="   +   age   +   "]"
+    }
+}
 data class openData(val name : String, val desc: String, val imageId: Int)
 data class ViewHolder(val nameTextView: TextView, val descTextView: TextView, val flowerImgView: ImageView)
 class listAdapter(context: Context, datas: List<openData>) : ArrayAdapter<openData>(context, 0, datas) {
@@ -148,11 +169,9 @@ class fragment_home : Fragment() {
     }
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-        
 
 
     ): View? {
@@ -161,61 +180,77 @@ class fragment_home : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
 
 
-
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val assetManager = context!!.getResources().getAssets()
-        //val texts = arrayOf("abc ", "bcd", "cde", "def", "efg", "fgh", "ghi", "hij", "ijk", "jkl", "klm")
-        //val dataArray = arrayOf("Kotlin","Android","iOS","Swift","Java")
 
+        val listView = view.findViewById(R.id.listview) as ListView
         try {
-            val bufferedReader = BufferedReader(InputStreamReader(assetManager.open("test.csv")))
-            //val flowers = List(names.size) { i -> openData(names[i], descriptions[i], images)}
-            val list = mutableListOf<openData>()
 
-            //val listView = view.findViewById<ListView>(R.id.Listview)*/
-            val listView =view.findViewById(R.id.listview) as ListView
-            //val listView = ListView(this)
-            //setContentView(listView)
-            //val adapter = ArrayAdapter<String>(activity,android.R.layout.activity_list_item)
+            val bufferedReader = BufferedReader(InputStreamReader(assetManager.open("tasteful-buildings.csv")))
+            val list = mutableListOf<openData>()
             var i = 0
+            /*
             bufferedReader.lineSequence().forEach {
-                Log.d("maita", "data;" + it.split(",")[0])
-                list.add(openData( it.split(",")[0],  it.split(",")[1], images[i]))
+                var listB = it.split(Regex("\\r\\n"))
+                var columnList = listB.get(0).split(",")
+                Log.d("maita", "data;" + columnList[0])
+                list.add(openData( columnList[0],  columnList[1], images[i]))
                 //adapter.insert(it.split(",")[0],i)
                 i++
             }
             list.forEach {
                 Log.d("kaito", "data:" + it.name + " " + it.desc + " " + it.imageId)
             }
+            *//*
+            private   val  CUSTOMER_ID_IDX   =   0
+            private   val  CUSTOMER_NAME_IDX   =   1
+            private   val  CUSTOMER_ADDRESS_IDX   =   2
+            private   val  CUSTOMER_AGE   =   3
+            fun main( args :   Array <String> ? )   {
+                var   fileReader :   BufferedReader ?   =   null
 
+                val  customers  = mutableListOf<openData>()
+            var line = bufferedReader.readLine()
+            while (line != null) {
+                val  tokens   =   line . split ( "," )
+                if   ( tokens . size   >   0 )   {
+                    val  customer   =   Customer (
+                        tokens [ CUSTOMER_ID_IDX ] ,
+                        tokens [ CUSTOMER_NAME_IDX ] ,
+                        tokens [ CUSTOMER_ADDRESS_IDX ] ,
+                        Integer . parseInt ( tokens [ CUSTOMER_AGE ] ) )
+                    customers . add ( customer )
+                }
+
+
+            }
+            br.close()*/
 
             //listView.adapter=adapter
-            val adapter = listAdapter(activity!!,list)
+            val adapter = listAdapter(activity!!, list)
             listView.adapter = adapter
         } catch (e: Exception) {
             e.printStackTrace()
+
+
         }
 
+
+        /**
+         * This interface must be implemented by activities that contain this
+         * fragment to allow an interaction in this fragment to be communicated
+         * to the activity and potentially other fragments contained in that
+         * activity.
+         *
+         *
+         * See the Android Training lesson [Communicating with Other Fragments]
+         * (http://developer.android.com/training/basics/fragments/communicating.html)
+         * for more information.
+         */
+
     }
-
-
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
-
 }
