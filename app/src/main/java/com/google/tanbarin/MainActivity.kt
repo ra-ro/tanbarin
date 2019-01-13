@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
+import com.google.tanbarin.R.layout.fragment_maps
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.navigation_maps -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame, fragment_maps.createInstance(this))
+                    .replace(R.id.frame, fragment_maps())
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
