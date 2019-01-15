@@ -1,4 +1,4 @@
-#Tue Jan 15 18:20:25 JST 2019
+#Wed Jan 16 05:31:45 JST 2019
 base.0=/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex

@@ -1214,6 +1214,7 @@ id checkbox
 id chronometer
 id clip_horizontal
 id clip_vertical
+id close_button
 id collapseActionView
 id container
 id content
@@ -1306,6 +1307,9 @@ id parentPanel
 id parent_matrix
 id percent
 id pin
+id popDetail
+id popImage
+id popName
 id progress_circular
 id progress_horizontal
 id radio
@@ -1482,6 +1486,7 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout popup_layout
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
@@ -1533,8 +1538,10 @@ string abc_toolbar_collapse_description
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
+string button
 string character_counter_content_description
 string character_counter_pattern
+string close
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text
 string common_google_play_services_enable_title
@@ -1566,6 +1573,7 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string popupwindow
 string right
 string search_menu_title
 string status_bar_notification_info_overflow

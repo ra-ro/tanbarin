@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Jan 15 18:20:26 JST 2019
+#Tue Jan 15 22:12:40 JST 2019
 1.base=/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/merged_assets/debug/mergeDebugAssets/out
 2.path=tourist-facilities.csv
 0.baseType=DIRECTORY

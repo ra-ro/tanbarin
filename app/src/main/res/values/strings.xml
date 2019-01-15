@@ -11,9 +11,13 @@
     <string name="filename_sample_jpg">filename: sample.jpg</string>
     <string name="_59_0311">経度: 59.0311</string>
     <string name="_130_1515666">緯度: 130.1515666</string>
-    <string name="textview">TextView</string>
-    <string name="todo">TODO</string>
     <string name="left">Left</string>
     <string name="right">Right</string>
+    <string name="popupwindow">PopupWindow表示</string>
+    <string name="close">閉じる</string>
+    <string name="textview">TextView</string>
+    <string name="todo">TODO</string>
+    <string name="button">閉じる</string>
+
 
 </resources>

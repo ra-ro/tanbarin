@@ -16,12 +16,12 @@
         "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/drawable-hdpi-v4/abc_list_pressed_holo_light.9.png"
     },
     {
-        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_design_ic_visibility.png.flat",
-        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/9ad7e86849eff88720ff720371299c83/res/drawable-xhdpi-v4/design_ic_visibility.png"
-    },
-    {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_design_ic_visibility_off.png.flat",
         "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/9ad7e86849eff88720ff720371299c83/res/drawable-xxxhdpi-v4/design_ic_visibility_off.png"
+    },
+    {
+        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_design_ic_visibility.png.flat",
+        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/9ad7e86849eff88720ff720371299c83/res/drawable-xhdpi-v4/design_ic_visibility.png"
     },
     {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
@@ -52,12 +52,12 @@
         "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/9ad7e86849eff88720ff720371299c83/res/drawable-anydpi-v21/design_ic_visibility.xml"
     },
     {
-        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/color_mtrl_chip_background_color.xml.flat",
-        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/9ad7e86849eff88720ff720371299c83/res/color/mtrl_chip_background_color.xml"
-    },
-    {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-anydpi-v21_ic_notifications_black_24dp.xml.flat",
         "source": "/Users/kaiton/StudioProjects/tanbarin/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_notifications_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/color_mtrl_chip_background_color.xml.flat",
+        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/9ad7e86849eff88720ff720371299c83/res/color/mtrl_chip_background_color.xml"
     },
     {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
@@ -100,12 +100,12 @@
         "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/drawable-hdpi-v4/abc_text_select_handle_right_mtrl_light.png"
     },
     {
-        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_design_ic_visibility_off.png.flat",
-        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/9ad7e86849eff88720ff720371299c83/res/drawable-hdpi-v4/design_ic_visibility_off.png"
-    },
-    {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/layout_fragment_dash.xml.flat",
         "source": "/Users/kaiton/StudioProjects/tanbarin/app/src/main/res/layout/fragment_dash.xml"
+    },
+    {
+        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_design_ic_visibility_off.png.flat",
+        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/9ad7e86849eff88720ff720371299c83/res/drawable-hdpi-v4/design_ic_visibility_off.png"
     },
     {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_icon_light.xml.flat",
@@ -116,12 +116,12 @@
         "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/9ad7e86849eff88720ff720371299c83/res/layout/design_text_input_password_icon.xml"
     },
     {
-        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/anim_abc_slide_out_bottom.xml.flat",
-        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/anim/abc_slide_out_bottom.xml"
-    },
-    {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable_ic_mtrl_chip_checked_circle.xml.flat",
         "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/9ad7e86849eff88720ff720371299c83/res/drawable/ic_mtrl_chip_checked_circle.xml"
+    },
+    {
+        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/anim_abc_slide_out_bottom.xml.flat",
+        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/anim/abc_slide_out_bottom.xml"
     },
     {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/color-v21_abc_btn_colored_borderless_text_material.xml.flat",
@@ -140,12 +140,12 @@
         "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/color/abc_search_url_text.xml"
     },
     {
-        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
-        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/drawable-xxxhdpi-v4/abc_text_select_handle_right_mtrl_dark.png"
-    },
-    {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_ic_star_black_16dp.png.flat",
         "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/drawable-xhdpi-v4/abc_ic_star_black_16dp.png"
+    },
+    {
+        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
+        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/drawable-xxxhdpi-v4/abc_text_select_handle_right_mtrl_dark.png"
     },
     {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
@@ -176,12 +176,12 @@
         "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/a69aa8e4a5bd88c7d1b434e3b300ed74/res/drawable/common_google_signin_btn_text_light_normal.xml"
     },
     {
-        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/layout_abc_action_menu_item_layout.xml.flat",
-        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/layout/abc_action_menu_item_layout.xml"
-    },
-    {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable_kankou19.jpg.flat",
         "source": "/Users/kaiton/StudioProjects/tanbarin/app/src/main/res/drawable/kankou19.jpg"
+    },
+    {
+        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/layout_abc_action_menu_item_layout.xml.flat",
+        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/layout/abc_action_menu_item_layout.xml"
     },
     {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable_d.jpeg.flat",
@@ -244,12 +244,12 @@
         "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/drawable-ldrtl-xxxhdpi-v17/abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_list_longpressed_holo.9.png.flat",
-        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/drawable-hdpi-v4/abc_list_longpressed_holo.9.png"
-    },
-    {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_list_pressed_holo_light.9.png.flat",
         "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/drawable-xhdpi-v4/abc_list_pressed_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_list_longpressed_holo.9.png.flat",
+        "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/drawable-hdpi-v4/abc_list_longpressed_holo.9.png"
     },
     {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-ldrtl-mdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
@@ -1802,6 +1802,10 @@
     {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/color-v23_design_tint_password_toggle.xml.flat",
         "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/9ad7e86849eff88720ff720371299c83/res/color-v23/design_tint_password_toggle.xml"
+    },
+    {
+        "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/layout_popup_layout.xml.flat",
+        "source": "/Users/kaiton/StudioProjects/tanbarin/app/src/main/res/layout/popup_layout.xml"
     },
     {
         "merged": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",

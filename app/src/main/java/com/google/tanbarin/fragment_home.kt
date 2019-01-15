@@ -1,21 +1,31 @@
 package com.google.tanbarin
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_noti.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
 import java.util.*
+import android.widget.PopupWindow
+import com.google.tanbarin.R.layout.popup_layout
+import android.support.v4.app.DialogFragment
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
+import android.view.*
+import android.view.Window.FEATURE_NO_TITLE
+
+
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -128,8 +138,133 @@ class listAdapter(context: Context, datas: List<openData>) : ArrayAdapter<openDa
         return view!!
     }
 }
+/*
+class TestDialog() : DialogFragment() {
+    //ダイアログのタイトルを保存する変数　ただここにタイトルを保存しただけではスマホ縦横時に消えてしまう
+    //var mTitle: String by Delegates.notNull<String>()
+    var mTitle: String = ""
+
+    //コンストラクタで引数を渡すことができないのでBuilderパターンを利用する
+    companion object {
+        //Builderでタイトルを渡し上げて、このクラスのインスタンスを返してあげる
+        fun Builder(title: String): TestDialog {
+            //Bundleを利用してタイトルを一時的に保存する
+            val bundle: Bundle = Bundle().also { it.putString("Title", title) }
+            val testDialog: TestDialog = TestDialog().also { it.arguments = bundle }
+            return testDialog
+        }
+    }
+
+    //onCreate内でメンバ変数に保存すれば、スマホを横に動かしても保存される
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //argumentsから保存したタイトル名を取得するのでメンバ変数に保存する
+        mTitle = arguments?.getString("Title") as String
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialogBuilder = AlertDialog.Builder(activity!!)
+
+        //タイトルを設定する
+        dialogBuilder.setTitle(mTitle)
+        return dialogBuilder.create()
+    }
+}*/
+/*
+class ConfirmDialog : DialogFragment() {
+
+    var title = "title"
+    var msg = "msg"
+    var okText = "OK"
+    var cancelText = "cancel"
+    /** ok押下時の挙動 */
+    var onOkClickListener : DialogInterface.OnClickListener? = null
+    /** cancel押下時の挙動 デフォルトでは何もしない */
+    var onCancelClickListener : DialogInterface.OnClickListener? = DialogInterface.OnClickListener { _, _ -> }
+
+    companion object {
+        fun newInstance(): ConfirmDialog {
+            val instance = ConfirmDialog()
+            return instance
+        }
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        // Use the Builder class for convenient dialog construction
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle(title)
+            .setMessage(msg)
+            .setPositiveButton(okText, onOkClickListener)
+            .setNegativeButton(cancelText, onCancelClickListener)
+        // Create the AlertDialog object and return it
+        return builder.create()
+    }
+    override fun onCreateView(i: LayoutInflater, c: ViewGroup?, b: Bundle?): View? {
+        val content: View = i.inflate(R.layout.popup_layout, c)
+        return content
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // onPause でダイアログを閉じる場合
+        dismiss()
+    }
+}
+*/
+class AddListDialog: DialogFragment() {
+
+    companion object {
+        fun newInstance(): AddListDialog {
+            val instance = AddListDialog()
+            return instance
+        }
+    }
+
+    var name: String? = null
+    var detail: String? = null
+    var imageNum: Int? = null
 
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        if (getArguments() != null) {
+            name = getArguments()?.getString("name","");
+            detail = getArguments()?.getString("detail","")
+            imageNum = getArguments()?.getInt("imageNum",0)
+
+        }
+        //val dialog = Dialog(activity!!)
+        // タイトル非表示
+        dialog.window!!.requestFeature(Window.FEATURE_NO_TITLE)
+        // フルスクリーン
+        dialog.window!!.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+        )
+        dialog.setContentView(R.layout.popup_layout)
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        // 背景を透明にする
+        //dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // ボタンのリスナ
+        dialog.findViewById<Button>(R.id.close_button).setOnClickListener {
+                dismiss()
+        }
+        dialog.findViewById<TextView>(R.id.popName).text = name
+        dialog.findViewById<TextView>(R.id.popDetail).text = detail
+        Log.d("naraki", "data;" + imageNum)
+        dialog.findViewById<ImageView>(R.id.popImage).setImageBitmap(BitmapFactory.decodeResource(activity!!.resources, images[imageNum!!]))
+
+
+        return dialog
+    }
+/*
+    override fun onCreateView(i: LayoutInflater, c: ViewGroup?, b: Bundle?): View? {
+        val content: View = i.inflate(R.layout.popup_layout, c)
+        return content
+    }
+*/
+}
 class fragment_home : android.support.v4.app.Fragment() {
     // TODO: Rename and change types of parameters
 
@@ -148,7 +283,6 @@ class fragment_home : android.support.v4.app.Fragment() {
 
     ): View? {
         // Inflate the layout for this fragment
-
         return inflater.inflate(R.layout.fragment_home, container, false)
 
 
@@ -218,24 +352,75 @@ class fragment_home : android.support.v4.app.Fragment() {
 
                 }
                 i=0
-                //var listB = it.split(Regex("\\r\\n"))
-                //var listB = it.split(Regex("\\r\\n(?=(([^\"]*\"){2})*[^\"]*$)"))
-                //var columnList = listB.get(0).split(",")
-                //Log.d("maita", "data;" + listB)//columnList[0])
-                //list.add(openData( columnList[0],  columnList[1], images[i]))
-                //adapter.insert(it.split(",")[0],i)
-                //i++
             }
 
-            //list.forEach {
-            //    Log.d("kaito", "data:" + it.name + " " + it.desc + " " + it.imageId)
-            //}
-
-            //listView.adapter=adapter
             val adapter = listAdapter(activity!!, list)
             listView.adapter = adapter
+
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+
+        listview.setOnItemClickListener { adapterView, view, position, id ->
+            val name = view.findViewById<TextView>(R.id.nameTextView).text
+            val detail = view.findViewById<TextView>(R.id.descTextView).text
+            val imageNum = view.findViewById<ImageView>(R.id.buildImage).drawable
+            val imageNum2 = view.findViewById<ImageView>(R.id.buildImage).imageAlpha
+            val imageNum3 = view.findViewById<ImageView>(R.id.buildImage).imageMatrix
+            val imageNum4 = view.findViewById<ImageView>(R.id.buildImage).drawable
+            val imageNum5 = view.findViewById<ImageView>(R.id.buildImage).drawable
+
+
+
+            Log.d("naraki", "data1;" + imageNum)
+            Log.d("naraki", "data2;" + imageNum2)
+            Log.d("naraki", "data3;" + imageNum3)
+            Log.d("naraki", "data4;" + imageNum4)
+            Log.d("naraki", "data5;" + imageNum5)
+
+
+
+            Toast.makeText(activity!!, "clicked: $name", Toast.LENGTH_LONG).show()
+
+            //アクティビティではインスタンスを生成してshowメソッドを実施するだけ
+            val newFlagment = AddListDialog.newInstance()
+            val bundle = Bundle()
+            bundle.putString("name", name.toString())
+            bundle.putString("detail", detail.toString())
+            bundle.putInt("imageNum", position)
+            newFlagment.setArguments(bundle)
+            newFlagment.show(fragmentManager, "dialog")
+            //var dialog: ConfirmDialog = ConfirmDialog()
+            //dialog.show(childFragmentManager, "c")
+
+
+            //val frg = childFragmentManager.findFragmentById(R.id.)
+            /*
+            requireFragmentManager()
+            childFragmentManager.beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.frame, fragment_noti())
+                .commit()
+            */
+            /*
+            val popupWindow = PopupWindow(activity!!)
+            popupWindow.setWindowLayoutMode(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
+            popupWindow.setBackgroundDrawable(resources.getDrawable(R.drawable.omomuki01))
+            val popupView = layoutInflater.inflate(R.layout.popup_layout, null)
+            popupWindow.setContentView(popupView)
+            popupWindow.setOutsideTouchable(true)
+            popupWindow.setFocusable(true)
+            popupWindow.showAtLocation(activity!!.findViewById(R.id.close_button), Gravity.CENTER, 0, 0)
+            */
+            /*
+            childFragmentManager.beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.frame, listDetails())
+                .commit()
+             */
         }
     }
 }
