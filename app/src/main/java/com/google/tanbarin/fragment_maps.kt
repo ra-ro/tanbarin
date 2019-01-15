@@ -1,8 +1,6 @@
 package com.google.tanbarin
 
 import android.support.v4.content.ContextCompat.startActivity
-
-
 import android.Manifest
 //import android.app.Fragment
 import android.content.Context
