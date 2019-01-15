@@ -1203,6 +1203,7 @@ id barrier
 id beginning
 id blocking
 id bottom
+id buildImage
 id buttonPanel
 id cancel_action
 id center
@@ -1245,7 +1246,6 @@ id fill_horizontal
 id fill_vertical
 id filled
 id fixed
-id flowerImgView
 id forever
 id frame
 id ghost_view
@@ -1260,13 +1260,14 @@ id icon_group
 id icon_only
 id ifRoom
 id image
-id imageView
 id info
 id invisible
 id italic
 id item_touch_helper_previous_elevation
 id labeled
 id largeLabel
+id layoutImg
+id layoutText
 id left
 id light
 id line1
@@ -1355,7 +1356,10 @@ id status_bar_latest_event_content
 id stretch
 id submenuarrow
 id submit_area
+id tabLayout
+id tabLeft
 id tabMode
+id tabRight
 id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
@@ -1366,8 +1370,6 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id text_input_password_toggle
-id text_view1
-id text_view2
 id textinput_counter
 id textinput_error
 id textinput_helper_text
@@ -1387,6 +1389,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id viewPager
 id view_offset_helper
 id visible
 id wide
@@ -1556,12 +1559,14 @@ string filename_sample_jpg
 string google_maps_key
 string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
+string left
 string mtrl_chip_close_icon_content_description
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string right
 string search_menu_title
 string status_bar_notification_info_overflow
 string textview

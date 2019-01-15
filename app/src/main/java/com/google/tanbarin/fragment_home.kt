@@ -3,9 +3,6 @@ package com.google.tanbarin
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.text.TextUtils.split
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,21 +11,16 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
-import com.google.tanbarin.R.drawable.e
-import kotlinx.android.synthetic.main.fragment_home.*
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.list_item.*
 import kotlinx.android.synthetic.main.list_item.view.*
-//import jdk.nashorn.internal.runtime.ScriptingFunctions.readLine
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
 import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-@Suppress("UNREACHABLE_CODE")
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
@@ -78,8 +70,7 @@ val images = listOf(
     R.drawable.omomuki37,
     R.drawable.omomuki38,
     R.drawable.omomuki39,
-    R.drawable.omomuki40
-/*
+    R.drawable.omomuki40,
 R.drawable.kankou01,
 R.drawable.kankou02,
 R.drawable.kankou03,
@@ -105,33 +96,14 @@ R.drawable.kankou22,
 R.drawable.kankou23,
 R.drawable.kankou24,
 R.drawable.kankou25,
-R.drawable.kankou26,
-
-*/
+R.drawable.kankou26
 )
-/** CSVクラス定義**/
-class   Customer   {
-    var   id :   String ?   =   null
-    var   name :   String ?   =   null
-    var   address :   String ?   =   null
-    var   age :   Int   =   0
-
-    constructor ( )   { }
-    constructor ( id :   String ? ,   name :   String ? ,   address :   String ? ,   age :   Int )   {
-        this . id   =   id
-        this . name   =   name
-        this . address   =   address
-        this . age   =   age
-    }
-
-    override  fun  toString ( ) :   String   {
-        return   "Customer [id="   +   id   +   ", name="   +   name   +   ", address="   +   address   +   ", age="   +   age   +   "]"
-    }
-}
 data class openData(val name : String, val desc: String, val imageId: Int)
 data class ViewHolder(val nameTextView: TextView, val descTextView: TextView, val flowerImgView: ImageView)
+
 class listAdapter(context: Context, datas: List<openData>) : ArrayAdapter<openData>(context, 0, datas) {
     private val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
         var holder: ViewHolder
@@ -141,7 +113,7 @@ class listAdapter(context: Context, datas: List<openData>) : ArrayAdapter<openDa
             holder = ViewHolder(
                 view.nameTextView!!,
                 view.descTextView,
-                view.flowerImgView
+                view.buildImage
             )
             view.tag = holder
         } else {
@@ -158,7 +130,7 @@ class listAdapter(context: Context, datas: List<openData>) : ArrayAdapter<openDa
 }
 
 
-class fragment_home : Fragment() {
+class fragment_home : android.support.v4.app.Fragment() {
     // TODO: Rename and change types of parameters
 
 
@@ -185,72 +157,85 @@ class fragment_home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val assetManager = context!!.getResources().getAssets()
-
+        val assetManager = activity!!.getResources().getAssets()
         val listView = view.findViewById(R.id.listview) as ListView
+        val list = mutableListOf<openData>()
+        var i = 0
+/*
+        try {
+            // CSVファイルの読み込み
+            val `is` = assetManager.open("tasteful-buildings.csv")
+            val inputStreamReader = InputStreamReader(`is`)
+            val bufferReader = BufferedReader(inputStreamReader)
+                var line : String?
+            do {
+                line = bufferReader.readLine()
+                if (line == null)
+                    break
+                // 各行が","で区切られていて4つの項目があるとする
+                val st = StringTokenizer(line, ",")
+                val first = st.nextToken()
+                val second = st.nextToken()
+                val third = st.nextToken()
+                val fourth = st.nextToken()
+                //list.add(openData(first,  second, images[i]))
+                Log.d("maita", "data;" + first + " " + second)
+                i++
+            } while (true)
+            bufferReader.close()
+
+            val adapter = listAdapter(activity!!, list)
+            listView.adapter = adapter
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+*/
         try {
 
             val bufferedReader = BufferedReader(InputStreamReader(assetManager.open("tasteful-buildings.csv")))
             val list = mutableListOf<openData>()
+            var imagei=0
             var i = 0
-            /*
-            bufferedReader.lineSequence().forEach {
-                var listB = it.split(Regex("\\r\\n"))
-                var columnList = listB.get(0).split(",")
-                Log.d("maita", "data;" + columnList[0])
-                list.add(openData( columnList[0],  columnList[1], images[i]))
-                //adapter.insert(it.split(",")[0],i)
-                i++
-            }
-            list.forEach {
-                Log.d("kaito", "data:" + it.name + " " + it.desc + " " + it.imageId)
-            }
-            *//*
-            private   val  CUSTOMER_ID_IDX   =   0
-            private   val  CUSTOMER_NAME_IDX   =   1
-            private   val  CUSTOMER_ADDRESS_IDX   =   2
-            private   val  CUSTOMER_AGE   =   3
-            fun main( args :   Array <String> ? )   {
-                var   fileReader :   BufferedReader ?   =   null
+            var str = ""
 
-                val  customers  = mutableListOf<openData>()
-            var line = bufferedReader.readLine()
-            while (line != null) {
-                val  tokens   =   line . split ( "," )
-                if   ( tokens . size   >   0 )   {
-                    val  customer   =   Customer (
-                        tokens [ CUSTOMER_ID_IDX ] ,
-                        tokens [ CUSTOMER_NAME_IDX ] ,
-                        tokens [ CUSTOMER_ADDRESS_IDX ] ,
-                        Integer . parseInt ( tokens [ CUSTOMER_AGE ] ) )
-                    customers . add ( customer )
+            bufferedReader.lineSequence().forEachIndexed() {index, it ->
+                if(index==0) {
+                    return@forEachIndexed
                 }
+                str += it
+                str.toList().forEach {
+                    if (it == '\"') {
+                        i++
+                    }
+                }
+                if (i % 2 == 0) {
+                    var columnList = str.split(",")
+                    list.add(openData(columnList[0], columnList[3], images[imagei]))
+                    Log.d("maita", "data;" + columnList[0] + " " + columnList[1] +" " + columnList[2] + " " + imagei)
+                    imagei++
+                    str = ""
+                } else{
 
-
+                }
+                i=0
+                //var listB = it.split(Regex("\\r\\n"))
+                //var listB = it.split(Regex("\\r\\n(?=(([^\"]*\"){2})*[^\"]*$)"))
+                //var columnList = listB.get(0).split(",")
+                //Log.d("maita", "data;" + listB)//columnList[0])
+                //list.add(openData( columnList[0],  columnList[1], images[i]))
+                //adapter.insert(it.split(",")[0],i)
+                //i++
             }
-            br.close()*/
+
+            //list.forEach {
+            //    Log.d("kaito", "data:" + it.name + " " + it.desc + " " + it.imageId)
+            //}
 
             //listView.adapter=adapter
             val adapter = listAdapter(activity!!, list)
             listView.adapter = adapter
         } catch (e: Exception) {
             e.printStackTrace()
-
-
         }
-
-
-        /**
-         * This interface must be implemented by activities that contain this
-         * fragment to allow an interaction in this fragment to be communicated
-         * to the activity and potentially other fragments contained in that
-         * activity.
-         *
-         *
-         * See the Android Training lesson [Communicating with Other Fragments]
-         * (http://developer.android.com/training/basics/fragments/communicating.html)
-         * for more information.
-         */
-
     }
 }

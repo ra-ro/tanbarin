@@ -13,5 +13,7 @@
     <string name="_130_1515666">緯度: 130.1515666</string>
     <string name="textview">TextView</string>
     <string name="todo">TODO</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
 
 </resources>
