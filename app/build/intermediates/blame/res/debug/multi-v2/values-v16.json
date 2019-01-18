@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
+            "outputFile": "C:\\Users\\kaito9520\\AndroidStudioProjects\\tanbarin\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3b075b8db7123aa12ce71ff8ef2b004b/res/values-v16/values-v16.xml",
+                    "source": "C:\\Users\\kaito9520\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\1a3a3b1307e17034afea1062f72feaad\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/81d9620d851b5f235312167be4b5044e/res/values-v16/values-v16.xml",
+                    "source": "C:\\Users\\kaito9520\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\8a54bab40de0a6b4b30ff8fda0153ccc\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

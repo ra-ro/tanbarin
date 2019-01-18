@@ -1,4 +1,4 @@
-#Wed Jan 16 05:31:45 JST 2019
-base.0=/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/transforms/dexMerger/debug/0
+#Fri Jan 18 17:00:31 GMT+09:00 2019
+base.0=C\:\\Users\\kaito9520\\AndroidStudioProjects\\tanbarin\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex
