@@ -1,0 +1,19 @@
+#Internal package file, do not edit.
+#Tue Jan 22 00:39:59 GMT+09:00 2019
+1.base=D\:\\OneDrive\\programming\\android\\tanbarin\\app\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
+2.path=test.csv
+0.baseType=DIRECTORY
+3.baseType=DIRECTORY
+2.base=D\:\\OneDrive\\programming\\android\\tanbarin\\app\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
+3.set=DEX
+2.set=ASSET
+1.baseType=DIRECTORY
+3.path=classes.dex
+count=4
+1.set=ASSET
+0.path=tasteful-buildings.csv
+3.base=D\:\\OneDrive\\programming\\android\\tanbarin\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\out
+0.set=ASSET
+0.base=D\:\\OneDrive\\programming\\android\\tanbarin\\app\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
+2.baseType=DIRECTORY
+1.path=tourist-facilities.csv
