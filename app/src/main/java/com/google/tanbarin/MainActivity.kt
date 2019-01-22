@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)  //superコールの前にスタイル設定（LauncherScreenを入れたので）
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
