@@ -1,11 +1,15 @@
 #Internal package file, do not edit.
-#Mon Dec 10 11:11:31 JST 2018
+#Tue Jan 22 21:13:55 JST 2019
 1.base=/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/merged_assets/debug/mergeDebugAssets/out
+2.path=tasteful-buildings.csv
 0.baseType=DIRECTORY
+2.base=/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/merged_assets/debug/mergeDebugAssets/out
+2.set=ASSET
 1.baseType=DIRECTORY
-count=2
+count=3
 1.set=ASSET
-0.path=tourist-facilities.csv
+0.path=test.csv
 0.set=ASSET
 0.base=/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/merged_assets/debug/mergeDebugAssets/out
-1.path=tasteful-buildings.csv
+2.baseType=DIRECTORY
+1.path=tourist-facilities.csv

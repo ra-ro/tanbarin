@@ -9,7 +9,7 @@
     </style>
 
     <style name="AppTheme.Launcher">
-        <item name="android:windowBackground">@layout/style</item>
+        <item name="android:windowBackground">@drawable/splash_back</item>
     </style>
 
 </resources>

@@ -1161,9 +1161,10 @@ int drawable omomuki38 0x7f0700d2
 int drawable omomuki39 0x7f0700d3
 int drawable omomuki40 0x7f0700d4
 int drawable sanjo 0x7f0700d5
-int drawable tooltip_frame_dark 0x7f0700d6
-int drawable tooltip_frame_light 0x7f0700d7
-int drawable yui 0x7f0700d8
+int drawable splash_back 0x7f0700d6
+int drawable tooltip_frame_dark 0x7f0700d7
+int drawable tooltip_frame_light 0x7f0700d8
+int drawable yui 0x7f0700d9
 int id ALT 0x7f080000
 int id CTRL 0x7f080001
 int id FUNCTION 0x7f080002
