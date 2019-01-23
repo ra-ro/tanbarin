@@ -1,0 +1,4 @@
+#Wed Jan 23 11:16:51 GMT+09:00 2019
+base.0=D\:\\OneDrive\\programming\\android\\tanbarin\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\5
+path.0=classes.dex
+renamed.0=classes.dex
