@@ -297,41 +297,9 @@ class fragment_home : android.support.v4.app.Fragment() {
         val listView = view.findViewById(R.id.listview) as ListView
         val list = mutableListOf<openData>()
         var i = 0
-/*
         try {
-            // CSVファイルの読み込み
-            val `is` = assetManager.open("tasteful-buildings.csv")
-            val inputStreamReader = InputStreamReader(`is`)
-            val bufferReader = BufferedReader(inputStreamReader)
-                var line : String?
-            do {
-                line = bufferReader.readLine()
-                if (line == null)
-                    break
-                // 各行が","で区切られていて4つの項目があるとする
-                val st = StringTokenizer(line, ",")
-                val first = st.nextToken()
-                val second = st.nextToken()
-                val third = st.nextToken()
-                val fourth = st.nextToken()
-                //list.add(openData(first,  second, images[i]))
-                Log.d("maita", "data;" + first + " " + second)
-                i++
-            } while (true)
-            bufferReader.close()
-
-            val adapter = listAdapter(activity!!, list)
-            listView.adapter = adapter
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-*/
-        try {
-
             val bufferedReader = BufferedReader(InputStreamReader(assetManager.open("tasteful-buildings.csv")))
-            val list = mutableListOf<openData>()
             var imagei=0
-            var i = 0
             var str = ""
 
             bufferedReader.lineSequence().forEachIndexed() {index, it ->
