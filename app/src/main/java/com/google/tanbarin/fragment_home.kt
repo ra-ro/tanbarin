@@ -267,20 +267,8 @@ class AddListDialog: DialogFragment() {
 }
 class fragment_home : android.support.v4.app.Fragment() {
     // TODO: Rename and change types of parameters
-    private lateinit var csvfile: String
-/*
-    companion object {
-        private const val csv = "csvfile"
-        fun createInstance(csvfile:String): fragment_home {
-            val frg = fragment_home()
-            val args = Bundle()
-            args.putString(csv, csvfile)
 
-            frg.arguments = args
-            return frg
-        }
-    }
-*/
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -293,9 +281,13 @@ class fragment_home : android.support.v4.app.Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
+
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -305,11 +297,41 @@ class fragment_home : android.support.v4.app.Fragment() {
         val listView = view.findViewById(R.id.listview) as ListView
         val list = mutableListOf<openData>()
         var i = 0
-
+/*
         try {
-            val csv = arguments!!.getString("csvfile")
-            val bufferedReader = BufferedReader(InputStreamReader(assetManager.open(csv)))
+            // CSVファイルの読み込み
+            val `is` = assetManager.open("tasteful-buildings.csv")
+            val inputStreamReader = InputStreamReader(`is`)
+            val bufferReader = BufferedReader(inputStreamReader)
+                var line : String?
+            do {
+                line = bufferReader.readLine()
+                if (line == null)
+                    break
+                // 各行が","で区切られていて4つの項目があるとする
+                val st = StringTokenizer(line, ",")
+                val first = st.nextToken()
+                val second = st.nextToken()
+                val third = st.nextToken()
+                val fourth = st.nextToken()
+                //list.add(openData(first,  second, images[i]))
+                Log.d("maita", "data;" + first + " " + second)
+                i++
+            } while (true)
+            bufferReader.close()
+
+            val adapter = listAdapter(activity!!, list)
+            listView.adapter = adapter
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+*/
+        try {
+
+            val bufferedReader = BufferedReader(InputStreamReader(assetManager.open("tasteful-buildings.csv")))
+            val list = mutableListOf<openData>()
             var imagei=0
+            var i = 0
             var str = ""
 
             bufferedReader.lineSequence().forEachIndexed() {index, it ->
