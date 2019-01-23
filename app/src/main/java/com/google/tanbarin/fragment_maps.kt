@@ -144,7 +144,6 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
             var i = 0
             var str = ""
 
-
                 bufferedReader.lineSequence().forEachIndexed() { index, it ->
                     if(index==0) {
                         return@forEachIndexed
