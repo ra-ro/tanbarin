@@ -1162,7 +1162,6 @@ drawable omomuki38
 drawable omomuki39
 drawable omomuki40
 drawable sanjo
-drawable splash_back
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable yui

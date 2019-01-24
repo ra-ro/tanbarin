@@ -646,7 +646,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="AppTheme.Launcher">
-        <item name="android:windowBackground">@drawable/splash_back</item>
+        <item name="android:windowBackground">@layout/style</item>
     </style>
     <style name="Base.AlertDialog.AppCompat" parent="android:Widget">
         <item name="android:layout">@layout/abc_alert_dialog_material</item>

@@ -6,12 +6,11 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Address
-import android.location.Geocoder
-import android.location.*
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
+import android.location.LocationProvider
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import android.provider.Settings
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -22,19 +21,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
-import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 //import com.google.android.gms.maps.GoogleMap
-import com.google.tanbarin.R.drawable.e
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_maps.*
-import com.google.android.gms.maps.SupportMapFragment
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.util.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,34 +48,62 @@ import java.util.*
  */
 
 
-class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, LocationListener{
+class fragment_maps : android.support.v4.app.Fragment(), LocationListener{
     private lateinit var locationManager: LocationManager
     private lateinit var mMap : GoogleMap
+    // TODO: Rename and change types of parameters
+    //private val mSampleData = ClsListData()
 
-    fun newInstance(): fragment_maps {
-        val fragment = newInstance()
-        val args = Bundle()
-        fragment.setArguments(args)
-        return fragment
+    var mContext: Context? = null
+
+    companion object {
+        fun createInstance(mc: Context): fragment_maps {
+            // インスタンス？　MainActivityで生成時に呼ばれている関数
+            val tmpDetailFragment = fragment_maps()
+            val args = Bundle()
+            tmpDetailFragment.mContext = mc
+            tmpDetailFragment.arguments = args
+            return tmpDetailFragment
+        }
     }
+
+/*
+    //アクティビティのインスタンスを保存する変数
+    private var listener: OnFragmentInteractionListener? = null
+
+    //アクティビティのインスタンスの取得
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnFragmentInteractionListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
+
+    interface OnFragmentInteractionListener {
+        fun locationStart()
+    }
+*/
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-/*
-        val mapFragment = childFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment!!.getMapAsync(this)
-*/
-
         // Inflate the layout for this fragment
-        /*
 
         if (ContextCompat.checkSelfPermission(activity!!,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -96,7 +122,6 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
             }
 
         }
-        */
         return inflater.inflate(R.layout.activity_maps, container, false)
 
     }
@@ -105,133 +130,9 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        val mapFragment = childFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment!!.getMapAsync(this)
-
-    }
-
-
-    override fun onMapReady(googlemap: GoogleMap) {
-
-        // Need to call MapsInitializer before doing any CameraUpdateFactory calls
-        val gcoder = Geocoder(activity, Locale.getDefault())
-
-        try {
-            MapsInitializer.initialize(activity!!)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        mMap = googlemap
-        Log.d("maita", "datadatata;")
-
-        val hanedaAirport = LatLng(35.5554, 139.7544)
-        val kankuAirport = LatLng(34.4320024, 135.2303939)
-        val hirosakieki = LatLng(40.599257, 140.4851)
 
 
 
-
-        //地図へのマーカーの設定方法
-        mMap.addMarker(MarkerOptions().position(hirosakieki).title("弘前駅"))
-        val assetManager = activity!!.getResources().getAssets()
-
-        try {
-            val bufferedReader = BufferedReader(InputStreamReader(assetManager.open("tasteful-buildings.csv")))
-            var i = 0
-            var str = ""
-
-                bufferedReader.lineSequence().forEachIndexed() { index, it ->
-                    if(index==0) {
-                        return@forEachIndexed
-                    }
-                    str += it
-                    str.toList().forEach {
-                        if (it == '\"') {
-                            i++
-                        }
-                    }
-                    if (i % 2 == 0) {
-                        var columnList = str.split(",")
-                        Log.d("naraki", columnList[7] + " " + columnList[8])
-                        var posadd = gcoder.getFromLocationName(columnList[1].toString(), 1)
-                        if (posadd != null) {
-                            var pos = posadd.get(0)
-                            var lat = pos.latitude
-                            var lng = pos.longitude
-                            var poss = LatLng(lat, lng)
-                            Log.d("maita", columnList[0])
-                            mMap.addMarker(MarkerOptions().position(poss).title(columnList[0]))
-                        }
-                        str = ""
-                    } else {
-
-                    }
-                    i = 0
-                }
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        //地図の移動　画面上に表示される場所を指定する
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(hirosakieki))
-
-        //マップのズーム絶対値指定　1: 世界 5: 大陸 10:都市 15:街路 20:建物 ぐらいのサイズ
-        //mMap.moveCamera(CameraUpdateFactory.zoomTo(15F))
-
-        //1段階(レベル)のズーム
-        //mMap.moveCamera(CameraUpdateFactory.zoomIn())
-
-        //複数段階のズーム
-        //mMap.moveCamera(CameraUpdateFactory.zoomBy(2F))
-
-        //地図を移動して特定段階のズーム
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hirosakieki, 15F))
-
-        //指定ピクセルだけスクロール
-        //mMap.moveCamera(CameraUpdateFactory.scrollBy(100F, 100F))
-
-        //カメラの回転、東西南北の向き、見下ろす角度などの指定
-        /*
-        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(CameraPosition.builder().let {
-            //位置の指定必須　ないとエラーになる
-            it.target(hanedaAirport)
-            //東西南北の指定　北を0として右回りで360度
-            it.bearing(90F)
-            //カメラの見下ろす角度の指定　真下を0として90度
-            it.tilt(10F)
-            //ズームを指定しないと元にサイズに戻されるので事実上指定必須
-            it.zoom(15F)
-            it.build()
-        }))
-        */
-
-    }
-
-
-    private fun setUpMap() {
-        // mMap.getUiSettings().setZoomControlsEnabled(true)//拡大縮小ボタン表示
-        val sydney = LatLng(40.0, 133.0)
-        val test= "data"
-        val test2="omese"
-        if (mMap == null) {
-            Log.d("maita", "data;" )
-            println("$test")
-        }
-        println("$test2")
-        Log.d("maita", "datadatata;" )
-        // Add a marker in Sydney and move the camera
-        mMap.addMarker(MarkerOptions().position(sydney).title("tgdusdfg"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15F))
-    }
-
-
-
-/*
     private fun locationStart() {
         Log.d("debug", "locationStart()")
 
@@ -283,7 +184,7 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
         }
 
     }
-*/
+
     override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {
         when (status) {
             LocationProvider.AVAILABLE ->
@@ -294,15 +195,23 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
                 Log.d("debug", "LocationProvider.TEMPORARILY_UNAVAILABLE")
         }
     }
-/*
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        /*val view = layoutInflater.inflate(R.layout.fragment_maps, container, false)
+
+        val mapFragment = activity!!.supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment!!.getMapAsync(map)                // ここでNullPointerExceptionが発生します
+       return view*/
+    }
 
     override fun onResume() {
         super.onResume()
 
     }
-*/
-    override fun onLocationChanged(location: Location) {
+
+            override fun onLocationChanged(location: Location) {
         // Latitude
         //val textView1 = findViewById<TextView>(R.id.text_view1)
         //val str1 = "Latitude:" + location.getLatitude()
@@ -327,6 +236,22 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
             }
         }
     }*/
+
+    private fun setUpMap() {
+       // mMap.getUiSettings().setZoomControlsEnabled(true)//拡大縮小ボタン表示
+        val sydney = LatLng(40.0, 133.0)
+        val test= "data"
+        val test2="omese"
+        if (mMap == null) {
+            Log.d("maita", "data;" )
+            println("$test")
+        }
+        println("$test2")
+        Log.d("maita", "datadatata;" )
+        // Add a marker in Sydney and move the camera
+        mMap.addMarker(MarkerOptions().position(sydney).title("tgdusdfg"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15F))
+    }
 
     override fun onProviderEnabled(provider: String) {
 
