@@ -18,9 +18,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.nifcloud.mbaas.core.NCMB
-import com.nifcloud.mbaas.core.NCMBAcl
-import com.nifcloud.mbaas.core.NCMBFile
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -30,6 +27,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
+import com.nifcloud.mbaas.core.*
 import java.io.ByteArrayOutputStream
 
 
@@ -139,6 +137,8 @@ class fragment_noti : Fragment() {
     }
 
 
+
+
     private fun requestCameraPermission() {
         Dexter.withActivity(activity!!)
             .withPermission(Manifest.permission.CAMERA)
@@ -189,20 +189,74 @@ class fragment_noti : Fragment() {
 
 
 
+    //------------以下データストア関連（現在位置）-----------------------------
+
+
+    data class itiInfo (
+        var genzaiido:String = "",
+        var genzaikeido:String = ""
+    ){}
+
+    //↓データストアの読み出し
+    fun getitinfo(genzaiido:String) : itiInfo {
+        val mytanbarin = itiInfo()
+
+        mytanbarin.genzaiido = genzaiido
+        val query: NCMBQuery<NCMBObject> = NCMBQuery("tanbarin")
+        query.whereEqualTo("tanbarinID",genzaiido)
+        val results: List<NCMBObject> = try {
+            query.find()
+        } catch (e : Exception) { emptyList<NCMBObject>() }
+        if (results.isNotEmpty()) {
+            val result = results[0]
+            mytanbarin.genzaikeido = result.getString("tanbarinName")
+        }
+        return mytanbarin
+
+    }
+
+
+    //↓データストアへの追加
+    fun addtiti(company:itiInfo) {
+
+        val obj = NCMBObject("Company")
+
+        obj.put("CompanyName", company.genzaikeido)
+        obj.put("companyID", company.genzaiido)
+
+        try {
+            obj.save()
+        } catch (e : Exception) {
+            println("Company data save error : " + e.cause.toString())
+        }
+    }
+
+    //↓データストアの更新
+    fun updateiti(company:itiInfo) {
+
+        val query: NCMBQuery<NCMBObject> = NCMBQuery("Company")
+        query.whereEqualTo("companyID", company.genzaiido)
+
+        val results: List<NCMBObject> = try {
+            query.find()
+        } catch (e: Exception) {
+            emptyList<NCMBObject>()
+        }
+        if (results.isNotEmpty()) {
+            val obj = results[0]
+            obj.put("CompanyName", company.genzaikeido)
+            obj.put("companyID", company.genzaiido)
+
+            try {
+                obj.save()
+            } catch (e: Exception) {
+                println("company data save error : " + e.cause.toString())
+            }
+        }
+    }
 
 
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
 
 }
 
