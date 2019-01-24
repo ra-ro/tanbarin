@@ -59,7 +59,7 @@ class fragment_noti : android.support.v4.app.Fragment() {
 
         //setContentView(R.layout.activity_main)
         //-----------SDKの初期化 **********
-        //NCMB.initialize(applicationContext, applicationKey, clientKey)
+        //NCMB.initialize(applicationContext, applicationKey, clientKey) ←java用
         NCMB.initialize(activity!!, applicationKey, clientKey)
         //▼▼▼起動時に処理▼▼▼
 

@@ -1,0 +1,4 @@
+#Fri Jan 25 04:16:12 GMT+09:00 2019
+base.0=D\:\\OneDrive\\programming\\android\\tanbarin\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
+path.0=classes.dex
+renamed.0=classes.dex
