@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Fri Jan 25 04:16:13 GMT+09:00 2019
+#Fri Jan 25 05:34:36 GMT+09:00 2019
 1.base=D\:\\OneDrive\\programming\\android\\tanbarin\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
 2.path=tasteful-buildings.csv
 0.baseType=DIRECTORY

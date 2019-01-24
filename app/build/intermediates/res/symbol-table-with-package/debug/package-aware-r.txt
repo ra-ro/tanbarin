@@ -1205,6 +1205,7 @@ id blocking
 id bottom
 id buildImage
 id buttonPanel
+id button_send
 id cancel_action
 id center
 id center_horizontal
@@ -1374,6 +1375,7 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1541,6 +1543,7 @@ string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
 string button
+string button_send
 string character_counter_content_description
 string character_counter_pattern
 string close
@@ -1785,6 +1788,7 @@ style Base_Widget_MaterialComponents_TextInputLayout
 style CardView
 style CardView_Dark
 style CardView_Light
+style Dexter_Internal_Theme_Transparent
 style Platform_AppCompat
 style Platform_AppCompat_Light
 style Platform_MaterialComponents

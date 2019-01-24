@@ -18,6 +18,7 @@
     <string name="textview">TextView</string>
     <string name="todo">TODO</string>
     <string name="button">閉じる</string>
+    <string name="button_send">かめら</string>
 
 
 </resources>

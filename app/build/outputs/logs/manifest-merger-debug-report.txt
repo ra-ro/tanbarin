@@ -4,6 +4,7 @@ ADDED from D:\OneDrive\programming\android\tanbarin\app\src\main\AndroidManifest
 INJECTED from D:\OneDrive\programming\android\tanbarin\app\src\main\AndroidManifest.xml:2:1-54:12
 INJECTED from D:\OneDrive\programming\android\tanbarin\app\src\main\AndroidManifest.xml:2:1-54:12
 INJECTED from D:\OneDrive\programming\android\tanbarin\app\src\main\AndroidManifest.xml:2:1-54:12
+MERGED from [com.karumi:dexter:5.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\dexter-5.0.0.aar\32b05df0d17b218e8fb343e765962855\AndroidManifest.xml:17:1-32:12
 MERGED from [com.android.support:design:28.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\a4848a8fc79edabc3f0feb0f318c8360\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\7efdce4a1eabfa040aaa0ba5a71b1389\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\979779e78af53613598887349dd870ad\AndroidManifest.xml:2:1-11:12
@@ -82,6 +83,8 @@ MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\R.Yama\.
 		ADDED from D:\OneDrive\programming\android\tanbarin\app\src\main\AndroidManifest.xml:15:22-76
 application
 ADDED from D:\OneDrive\programming\android\tanbarin\app\src\main\AndroidManifest.xml:18:5-52:19
+MERGED from [com.karumi:dexter:5.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\dexter-5.0.0.aar\32b05df0d17b218e8fb343e765962855\AndroidManifest.xml:26:5-30:19
+MERGED from [com.karumi:dexter:5.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\dexter-5.0.0.aar\32b05df0d17b218e8fb343e765962855\AndroidManifest.xml:26:5-30:19
 MERGED from [com.android.support:design:28.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\a4848a8fc79edabc3f0feb0f318c8360\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:28.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\a4848a8fc79edabc3f0feb0f318c8360\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\979779e78af53613598887349dd870ad\AndroidManifest.xml:9:5-20
@@ -150,6 +153,8 @@ uses-sdk
 INJECTED from D:\OneDrive\programming\android\tanbarin\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\OneDrive\programming\android\tanbarin\app\src\main\AndroidManifest.xml
 INJECTED from D:\OneDrive\programming\android\tanbarin\app\src\main\AndroidManifest.xml
+MERGED from [com.karumi:dexter:5.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\dexter-5.0.0.aar\32b05df0d17b218e8fb343e765962855\AndroidManifest.xml:22:5-24:41
+MERGED from [com.karumi:dexter:5.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\dexter-5.0.0.aar\32b05df0d17b218e8fb343e765962855\AndroidManifest.xml:22:5-24:41
 MERGED from [com.android.support:design:28.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\a4848a8fc79edabc3f0feb0f318c8360\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:design:28.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\a4848a8fc79edabc3f0feb0f318c8360\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\7efdce4a1eabfa040aaa0ba5a71b1389\AndroidManifest.xml:20:5-44
@@ -238,6 +243,12 @@ INJECTED from D:\OneDrive\programming\android\tanbarin\app\src\main\AndroidManif
 		INJECTED from D:\OneDrive\programming\android\tanbarin\app\src\main\AndroidManifest.xml
 		ADDED from D:\OneDrive\programming\android\tanbarin\app\src\main\AndroidManifest.xml
 		INJECTED from D:\OneDrive\programming\android\tanbarin\app\src\main\AndroidManifest.xml
+activity#com.karumi.dexter.DexterActivity
+ADDED from [com.karumi:dexter:5.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\dexter-5.0.0.aar\32b05df0d17b218e8fb343e765962855\AndroidManifest.xml:27:9-29:72
+	android:theme
+		ADDED from [com.karumi:dexter:5.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\dexter-5.0.0.aar\32b05df0d17b218e8fb343e765962855\AndroidManifest.xml:29:13-69
+	android:name
+		ADDED from [com.karumi:dexter:5.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\dexter-5.0.0.aar\32b05df0d17b218e8fb343e765962855\AndroidManifest.xml:28:13-60
 uses-feature#0x00020000
 ADDED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\R.Yama\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.0.0.aar\a2d4579519d7ca4d5ff1c49124cba644\AndroidManifest.xml:26:5-28:35
 	android:glEsVersion
