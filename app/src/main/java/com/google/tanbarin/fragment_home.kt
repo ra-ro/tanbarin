@@ -295,8 +295,8 @@ class fragment_home : android.support.v4.app.Fragment() {
 
         val assetManager = activity!!.getResources().getAssets()
         val listView = view.findViewById(R.id.listview) as ListView
-        val list = mutableListOf<openData>()
-        var i = 0
+        //val list = mutableListOf<openData>()
+        //var i = 0
 /*
         try {
             // CSVファイルの読み込み
