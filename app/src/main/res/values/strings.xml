@@ -19,6 +19,7 @@
     <string name="todo">TODO</string>
     <string name="button">閉じる</string>
     <string name="button_send">かめら</string>
+    <string name="button_pic">撮影</string>
 
 
 </resources>

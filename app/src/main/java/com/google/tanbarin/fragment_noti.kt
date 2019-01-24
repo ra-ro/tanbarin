@@ -30,6 +30,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
+import kotlinx.android.synthetic.main.fragment_noti.view.*
 import java.io.ByteArrayOutputStream
 
 
@@ -68,8 +69,12 @@ class fragment_noti : Fragment() {
     }
 
     internal var b1: Button? = null
-        //internal var b2: Button? = null
+    internal var b2: Button? = null
+    //internal var b2: Button? = null
     internal var iv: ImageView? = null
+
+    internal var pr: ImageView? = null
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,9 +85,11 @@ class fragment_noti : Fragment() {
         NCMB.initialize(activity!!, applicationKey, clientKey)
 
         b1 = view.findViewById<Button>(R.id.button_send) //as Button
+        b2 = view.findViewById<Button>(R.id.button_pic) //as Button
         iv = view.findViewById<ImageView>(R.id.imageView) //as ImageView
-
-        b1?.setOnClickListener { requestCameraPermission() }
+        pr = view.findViewById<ImageView>(R.id.preview) //as ImageView
+        b2?.setOnClickListener { requestCameraPermission() }
+        b1?.visibility = View.INVISIBLE
 
     }
 
@@ -103,37 +110,52 @@ class fragment_noti : Fragment() {
             acl.publicReadAccess = true
             acl.publicWriteAccess = true
 
-            //通信実施
-            val file = NCMBFile("test.png", dataByte, acl)
-            file.saveInBackground { e ->
-                val result: String
-                if (e != null) {
-                    //保存失敗
-                    AlertDialog.Builder(activity!!)
-                        .setTitle("Notification from NIFCloud")
-                        .setMessage("Error:" + e.message)
-                        .setPositiveButton("OK", null)
-                        .show()
-                } else {
-                    //******* NCMB file download *******
-                    val file = NCMBFile("test.png")
-                    file.fetchInBackground { dataFetch, er ->
-                        if (er != null) {
-                            //失敗処理
-                            AlertDialog.Builder(activity!!)
-                                .setTitle("Notification from NIFCloud")
-                                .setMessage("Error:" + er.message)
-                                .setPositiveButton("OK", null)
-                                .show()
-                        } else {
-                            //成功処理
-                            val bMap = BitmapFactory.decodeByteArray(dataFetch, 0, dataFetch.size)
-                            iv?.setImageBitmap(bMap)
-                        }
+            pr?.setImageBitmap(bp)
+            b1?.text = "送信"
+            b1?.setOnClickListener { cameraSend(dataByte, acl) }
+            b1?.visibility = View.VISIBLE
+            b2?.text = "再撮影"
+            b2?.setOnClickListener { requestCameraPermission() }
+
+
+
+
+        }
+    }
+
+    private fun cameraSend(dataByte : ByteArray, acl : NCMBAcl){
+        //通信実施
+        val file = NCMBFile("test.png", dataByte, acl)
+        b1?.visibility = View.INVISIBLE
+        b2?.text = "撮影"
+        file.saveInBackground { e ->
+            val result: String
+            if (e != null) {
+                //保存失敗
+                AlertDialog.Builder(activity!!)
+                    .setTitle("Notification from NIFCloud")
+                    .setMessage("Error:" + e.message)
+                    .setPositiveButton("OK", null)
+                    .show()
+            } else {
+                //******* NCMB file download *******
+                val file = NCMBFile("test.png")
+                file.fetchInBackground { dataFetch, er ->
+                    if (er != null) {
+                        //失敗処理
+                        AlertDialog.Builder(activity!!)
+                            .setTitle("Notification from NIFCloud")
+                            .setMessage("Error:" + er.message)
+                            .setPositiveButton("OK", null)
+                            .show()
+                    } else {
+                        //成功処理
+                        val bMap = BitmapFactory.decodeByteArray(dataFetch, 0, dataFetch.size)
+                        iv?.setImageBitmap(bMap)
                     }
-
-
                 }
+
+
             }
         }
     }

@@ -1205,6 +1205,7 @@ id blocking
 id bottom
 id buildImage
 id buttonPanel
+id button_pic
 id button_send
 id cancel_action
 id center
@@ -1312,6 +1313,7 @@ id pin
 id popDetail
 id popImage
 id popName
+id preview
 id progress_circular
 id progress_horizontal
 id radio
@@ -1468,6 +1470,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout fragment_dash
+layout fragment_fragment_userdata
 layout fragment_home
 layout fragment_maps
 layout fragment_noti
@@ -1543,6 +1546,7 @@ string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
 string button
+string button_pic
 string button_send
 string character_counter_content_description
 string character_counter_pattern
