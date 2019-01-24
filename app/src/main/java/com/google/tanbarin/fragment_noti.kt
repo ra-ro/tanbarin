@@ -206,20 +206,3 @@ class fragment_noti : Fragment() {
 
 }
 
-/*
-
-
-class fragment_noti: AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        ********** SDKの初期化 **********
-        NCMB.initialize(applicationContext, applicationKey, clientKey)
-        //▼▼▼起動時に処理▼▼▼
-
-
-        //▲▲▲起動時に処理▲▲▲
-    }
-
-
-}*/
