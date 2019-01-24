@@ -66,7 +66,7 @@ class fragment_noti : Fragment() {
     }
 
     internal var b1: Button? = null
-        //internal var b2: Button? = null
+    //internal var b2: Button? = null
     internal var iv: ImageView? = null
 
 
@@ -198,7 +198,7 @@ class fragment_noti : Fragment() {
     ){}
 
     //↓データストアの読み出し
-    fun getitinfo(genzaiido:String) : itiInfo {
+    fun getitiinfo(genzaiido:String) : itiInfo {
         val mytanbarin = itiInfo()
 
         mytanbarin.genzaiido = genzaiido
