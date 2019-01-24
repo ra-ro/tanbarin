@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import com.nifcloud.mbaas.core.NCMB
+import com.nifcloud.mbaas.core.NCMBAcl
+import com.nifcloud.mbaas.core.NCMBFile
 
 class MainActivity : AppCompatActivity() {
 
