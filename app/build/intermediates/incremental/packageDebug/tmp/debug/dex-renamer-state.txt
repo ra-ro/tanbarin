@@ -1,4 +1,4 @@
-#Fri Jan 25 07:10:52 JST 2019
-base.0=/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/dex/debug/mergeDexDebug/out
+#Fri Jan 25 06:58:41 GMT+09:00 2019
+base.0=D\:\\OneDrive\\programming\\android\\tanbarin\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
 path.0=classes.dex
 renamed.0=classes.dex

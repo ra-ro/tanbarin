@@ -18,9 +18,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.nifcloud.mbaas.core.NCMB
-import com.nifcloud.mbaas.core.NCMBAcl
-import com.nifcloud.mbaas.core.NCMBFile
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -30,7 +27,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
-import kotlinx.android.synthetic.main.fragment_noti.view.*
+import com.nifcloud.mbaas.core.*
 import java.io.ByteArrayOutputStream
 
 
@@ -69,12 +66,8 @@ class fragment_noti : Fragment() {
     }
 
     internal var b1: Button? = null
-    internal var b2: Button? = null
-    //internal var b2: Button? = null
+        //internal var b2: Button? = null
     internal var iv: ImageView? = null
-
-    internal var pr: ImageView? = null
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -85,11 +78,9 @@ class fragment_noti : Fragment() {
         NCMB.initialize(activity!!, applicationKey, clientKey)
 
         b1 = view.findViewById<Button>(R.id.button_send) //as Button
-        b2 = view.findViewById<Button>(R.id.button_pic) //as Button
         iv = view.findViewById<ImageView>(R.id.imageView) //as ImageView
-        pr = view.findViewById<ImageView>(R.id.preview) //as ImageView
-        b2?.setOnClickListener { requestCameraPermission() }
-        b1?.visibility = View.INVISIBLE
+
+        b1?.setOnClickListener { requestCameraPermission() }
 
     }
 
@@ -110,55 +101,42 @@ class fragment_noti : Fragment() {
             acl.publicReadAccess = true
             acl.publicWriteAccess = true
 
-            pr?.setImageBitmap(bp)
-            b1?.text = "送信"
-            b1?.setOnClickListener { cameraSend(dataByte, acl) }
-            b1?.visibility = View.VISIBLE
-            b2?.text = "再撮影"
-            b2?.setOnClickListener { requestCameraPermission() }
-
-
-
-
-        }
-    }
-
-    private fun cameraSend(dataByte : ByteArray, acl : NCMBAcl){
-        //通信実施
-        val file = NCMBFile("test.png", dataByte, acl)
-        b1?.visibility = View.INVISIBLE
-        b2?.text = "撮影"
-        file.saveInBackground { e ->
-            val result: String
-            if (e != null) {
-                //保存失敗
-                AlertDialog.Builder(activity!!)
-                    .setTitle("Notification from NIFCloud")
-                    .setMessage("Error:" + e.message)
-                    .setPositiveButton("OK", null)
-                    .show()
-            } else {
-                //******* NCMB file download *******
-                val file = NCMBFile("test.png")
-                file.fetchInBackground { dataFetch, er ->
-                    if (er != null) {
-                        //失敗処理
-                        AlertDialog.Builder(activity!!)
-                            .setTitle("Notification from NIFCloud")
-                            .setMessage("Error:" + er.message)
-                            .setPositiveButton("OK", null)
-                            .show()
-                    } else {
-                        //成功処理
-                        val bMap = BitmapFactory.decodeByteArray(dataFetch, 0, dataFetch.size)
-                        iv?.setImageBitmap(bMap)
+            //通信実施
+            val file = NCMBFile("test.png", dataByte, acl)
+            file.saveInBackground { e ->
+                val result: String
+                if (e != null) {
+                    //保存失敗
+                    AlertDialog.Builder(activity!!)
+                        .setTitle("Notification from NIFCloud")
+                        .setMessage("Error:" + e.message)
+                        .setPositiveButton("OK", null)
+                        .show()
+                } else {
+                    //******* NCMB file download *******
+                    val file = NCMBFile("test.png")
+                    file.fetchInBackground { dataFetch, er ->
+                        if (er != null) {
+                            //失敗処理
+                            AlertDialog.Builder(activity!!)
+                                .setTitle("Notification from NIFCloud")
+                                .setMessage("Error:" + er.message)
+                                .setPositiveButton("OK", null)
+                                .show()
+                        } else {
+                            //成功処理
+                            val bMap = BitmapFactory.decodeByteArray(dataFetch, 0, dataFetch.size)
+                            iv?.setImageBitmap(bMap)
+                        }
                     }
+
+
                 }
-
-
             }
         }
     }
+
+
 
 
     private fun requestCameraPermission() {
@@ -211,37 +189,74 @@ class fragment_noti : Fragment() {
 
 
 
+    //------------以下データストア関連（現在位置）-----------------------------
 
 
+    data class itiInfo (
+        var genzaiido:String = "",
+        var genzaikeido:String = ""
+    ){}
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
+    //↓データストアの読み出し
+    fun getitinfo(genzaiido:String) : itiInfo {
+        val mytanbarin = itiInfo()
 
-}
+        mytanbarin.genzaiido = genzaiido
+        val query: NCMBQuery<NCMBObject> = NCMBQuery("tanbarin")
+        query.whereEqualTo("tanbarinID",genzaiido)
+        val results: List<NCMBObject> = try {
+            query.find()
+        } catch (e : Exception) { emptyList<NCMBObject>() }
+        if (results.isNotEmpty()) {
+            val result = results[0]
+            mytanbarin.genzaikeido = result.getString("tanbarinName")
+        }
+        return mytanbarin
 
-/*
-
-
-class fragment_noti: AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        ********** SDKの初期化 **********
-        NCMB.initialize(applicationContext, applicationKey, clientKey)
-        //▼▼▼起動時に処理▼▼▼
-
-
-        //▲▲▲起動時に処理▲▲▲
     }
 
 
-}*/
+    //↓データストアへの追加
+    fun addtiti(company:itiInfo) {
+
+        val obj = NCMBObject("Company")
+
+        obj.put("CompanyName", company.genzaikeido)
+        obj.put("companyID", company.genzaiido)
+
+        try {
+            obj.save()
+        } catch (e : Exception) {
+            println("Company data save error : " + e.cause.toString())
+        }
+    }
+
+    //↓データストアの更新
+    fun updateiti(company:itiInfo) {
+
+        val query: NCMBQuery<NCMBObject> = NCMBQuery("Company")
+        query.whereEqualTo("companyID", company.genzaiido)
+
+        val results: List<NCMBObject> = try {
+            query.find()
+        } catch (e: Exception) {
+            emptyList<NCMBObject>()
+        }
+        if (results.isNotEmpty()) {
+            val obj = results[0]
+            obj.put("CompanyName", company.genzaikeido)
+            obj.put("companyID", company.genzaiido)
+
+            try {
+                obj.save()
+            } catch (e: Exception) {
+                println("company data save error : " + e.cause.toString())
+            }
+        }
+    }
+
+
+
+
+}
+
