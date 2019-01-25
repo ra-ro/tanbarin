@@ -102,6 +102,7 @@ class fragment_noti : Fragment() {
         pr = view.findViewById<ImageView>(R.id.preview) //as ImageView
         b2?.setOnClickListener { requestCameraPermission() }
         b1?.visibility = View.INVISIBLE
+        pr?.visibility = View.INVISIBLE
 
     }
 
@@ -126,6 +127,7 @@ class fragment_noti : Fragment() {
             b1?.text = "送信"
             b1?.setOnClickListener { cameraSend(dataByte, acl) }
             b1?.visibility = View.VISIBLE
+            pr?.visibility = View.VISIBLE
             b2?.text = "再撮影"
             b2?.setOnClickListener { requestCameraPermission() }
 
@@ -139,6 +141,7 @@ class fragment_noti : Fragment() {
         //通信実施
         val file = NCMBFile("test.png", dataByte, acl)
         b1?.visibility = View.INVISIBLE
+        pr?.visibility = View.INVISIBLE
         b2?.text = "撮影"
         file.saveInBackground { e ->
             val result: String
