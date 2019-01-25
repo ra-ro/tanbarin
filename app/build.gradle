@@ -45,9 +45,9 @@ dependencies {
     implementation 'com.karumi:dexter:5.0.0'
     //↓プッシュ通知用
     implementation 'com.google.firebase:firebase-core:16.0.6' //16.0.1だとエラー
-        implementation 'com.google.firebase:firebase-messaging:17.3.4' //17.1.0だとエラー
+    implementation 'com.google.firebase:firebase-messaging:17.3.4' //17.1.0だとエラー
     implementation 'com.google.android.gms:play-services-base:16.1.0'
 
 }
 
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'

@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.navigation_home -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame, fragment_home())
+                    .replace(R.id.frame, fragment_push())
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
