@@ -13,10 +13,6 @@ import android.view.ViewGroup
 //import com.google.tanbarin.R.layout.fragment_dash
 import kotlinx.android.synthetic.main.fragment_dash.*
 
-//import com.nifcloud.mbaas.core.NCMB
-//import com.nifcloud.mbaas.core.NCMBAcl
-//import com.nifcloud.mbaas.core.NCMBFile
-
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,15 +70,7 @@ class fragment_dash : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //********** SDKの初期化 **********
-        //NCMB.initialize(applicationContext, applicationKey, clientKey)
-        //▼▼▼起動時に処理▼▼▼
 
-
-        //▲▲▲起動時に処理▲▲▲
-        //**************** APIキーの設定とSDKの初期化 動かんやつ**********************
-        //NCMB.initialize(this, "4be64b73110568a79692b7fced842a43ea7f8330ac9672f490c38b1cae2a04f2", "a6432123d33c4004f4b054151487e7bc25dddbfbdd63ef603400f5e5bd2c981c");
-        //****************************************************************************
 
     }
 

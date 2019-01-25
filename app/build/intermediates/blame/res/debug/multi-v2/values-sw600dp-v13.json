@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/kaiton/StudioProjects/tanbarin/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "D:\\OneDrive\\programming\\android\\tanbarin\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/52f32e58c884a70df8f151e74ed67477/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\R.Yama\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\85ca528817df055ff4029b129e688a35\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/kaiton/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/081a3c126fa2bbac1dbae5b0ce6c131d/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\R.Yama\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\fdf42f4e1576694bf3d465019aa9f7c2\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,11,12",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",

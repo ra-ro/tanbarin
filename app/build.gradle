@@ -36,12 +36,18 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.google.android.gms:play-services-location:15.0.1'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.android.support:appcompat-v7:28.0.0'
     //↓ニフクラ用
-    implementation 'com.google.code.gson:gson:2.3.1'
+    implementation 'com.google.code.gson:gson:2.8.2'
     implementation files('libs/NCMB.jar')
     //↓カルミ
     implementation 'com.karumi:dexter:5.0.0'
+    //↓プッシュ通知用
+    implementation 'com.google.firebase:firebase-core:16.0.6' //16.0.1だとエラー
+        implementation 'com.google.firebase:firebase-messaging:17.3.4' //17.1.0だとエラー
+    implementation 'com.google.android.gms:play-services-base:16.1.0'
 
 }
+
+apply plugin: 'com.google.gms.google-services'
