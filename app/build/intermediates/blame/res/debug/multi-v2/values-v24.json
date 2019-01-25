@@ -4,7 +4,7 @@
             "outputFile": "D:\\OneDrive\\programming\\android\\tanbarin\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\R.Yama\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\7efdce4a1eabfa040aaa0ba5a71b1389\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\R.Yama\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\85ca528817df055ff4029b129e688a35\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\R.Yama\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\4cf9143aa43049fc3e6a8d918f662e70\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\R.Yama\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\cf9736eab68a050325893bebf3c7d57a\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

@@ -3,6 +3,7 @@ package com.google.tanbarin
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Dialog
 import android.app.PendingIntent
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -89,7 +90,7 @@ class fragment_noti : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        super.onViewCreated(view,savedInstanceState)
 
         //-----------SDKの初期化 **********
         //NCMB.initialize(applicationContext, applicationKey, clientKey) ←java用
@@ -219,6 +220,22 @@ class fragment_noti : Fragment() {
         startActivityForResult(intent, 101)
     }
 //----------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /*
 //ニフクラ公式のサンプル（Javaをコンバートしただけ)
