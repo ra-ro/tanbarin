@@ -74,24 +74,25 @@ class fragment_push: Fragment() {
             e.printStackTrace()
         }
 
-/*
+/**/
     }
-
+    var id: String? = null
+    var url: String? = null
 
     //override fun onResume() {
-    override fun onCreateDialog(savedInstanceState: Bundle?,data: Intent?): Dialog {*/
-        //val dialog = super.onCreateDialog(savedInstanceState)
+    override fun onCreateDialog(savedInstanceState: Bundle?,data: Intent?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
 
         //**************** ペイロード、リッチプッシュを処理する ***************
         val intent = Intent()
 
         //プッシュ通知IDを表示
-       // _pushId = dialog.findViewById<TextView>(R.id._pushId)
+        _pushId = dialog.findViewById<TextView>(R.id._pushId) .text = id
         val pushid = intent.getStringExtra("com.nifcloud.mbaas.PushId")
         _pushId.text = pushid
 
         //RichURLを表示
-        //_richurl = view.findViewById<TextView>(R.id.txtRichurl)
+        _richurl = dialog.findViewById<TextView>(R.id.txtRichurl) .text = url
         val richurl = intent.getStringExtra("com.nifcloud.mbaas.RichUrl")
         _richurl.text = richurl
 
@@ -100,8 +101,8 @@ class fragment_push: Fragment() {
             try {
                 val json = JSONObject(intent.getStringExtra("com.nifcloud.mbaas.Data"))
                 if (json != null) {
-                    //val lv = view.findViewById<View>(R.id.lsJson) as ListView
-                    //lv.adapter = ListAdapter(this, json)
+                    val lv = dialog.findViewById<View>(R.id.lsJson) as ListView
+                    lv.adapter = ListAdapter(this, json)
                 }
             } catch (e: JSONException) {
                 //エラー処理
