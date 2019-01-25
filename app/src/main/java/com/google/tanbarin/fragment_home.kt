@@ -23,9 +23,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.view.*
 import android.view.Window.FEATURE_NO_TITLE
-
-
-
+import java.sql.Array
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -41,7 +39,7 @@ import android.view.Window.FEATURE_NO_TITLE
  *
  */
 
-val images = listOf(
+val images1 = listOf(
     R.drawable.omomuki01,
     R.drawable.omomuki02,
     R.drawable.omomuki03,
@@ -81,32 +79,56 @@ val images = listOf(
     R.drawable.omomuki38,
     R.drawable.omomuki39,
     R.drawable.omomuki40,
-R.drawable.kankou01,
-R.drawable.kankou02,
-R.drawable.kankou03,
-R.drawable.kankou04,
-R.drawable.kankou05,
-R.drawable.kankou06,
-R.drawable.kankou07,
-R.drawable.kankou08,
-R.drawable.kankou09,
-R.drawable.kankou10,
-R.drawable.kankou11,
-R.drawable.kankou12,
-R.drawable.kankou13,
-R.drawable.kankou14,
-R.drawable.kankou15,
-R.drawable.kankou16,
-R.drawable.kankou17,
-R.drawable.kankou18,
-R.drawable.kankou19,
-R.drawable.kankou20,
-R.drawable.kankou21,
-R.drawable.kankou22,
-R.drawable.kankou23,
-R.drawable.kankou24,
-R.drawable.kankou25,
-R.drawable.kankou26
+    R.drawable.omomuki35,
+    R.drawable.omomuki36,
+    R.drawable.omomuki37,
+    R.drawable.omomuki38,
+    R.drawable.omomuki39,
+    R.drawable.omomuki40,
+    R.drawable.omomuki35,
+    R.drawable.omomuki36,
+    R.drawable.omomuki37,
+    R.drawable.omomuki38,
+    R.drawable.omomuki39,
+    R.drawable.omomuki40
+)
+val images2 = listOf(
+    R.drawable.kankou01,
+    R.drawable.kankou02,
+    R.drawable.kankou03,
+    R.drawable.kankou04,
+    R.drawable.kankou05,
+    R.drawable.kankou06,
+    R.drawable.kankou07,
+    R.drawable.kankou08,
+    R.drawable.kankou09,
+    R.drawable.kankou10,
+    R.drawable.kankou11,
+    R.drawable.kankou12,
+    R.drawable.kankou13,
+    R.drawable.kankou14,
+    R.drawable.kankou15,
+    R.drawable.kankou16,
+    R.drawable.kankou17,
+    R.drawable.kankou18,
+    R.drawable.kankou19,
+    R.drawable.kankou20,
+    R.drawable.kankou21,
+    R.drawable.kankou22,
+    R.drawable.kankou23,
+    R.drawable.kankou24,
+    R.drawable.kankou25,
+    R.drawable.kankou26,
+    R.drawable.kankou22,
+    R.drawable.kankou23,
+    R.drawable.kankou24,
+    R.drawable.kankou25,
+    R.drawable.kankou26,
+    R.drawable.kankou22,
+    R.drawable.kankou23,
+    R.drawable.kankou24,
+    R.drawable.kankou25,
+    R.drawable.kankou26
 )
 data class openData(val name : String, val desc: String, val imageId: Int)
 data class ViewHolder(val nameTextView: TextView, val descTextView: TextView, val flowerImgView: ImageView)
@@ -226,6 +248,14 @@ class AddListDialog: DialogFragment() {
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val csv = arguments!!.getString("csvfile")
+        var img  = images1
+        if(csv == "tasteful-buildings.csv") {
+            img = images1
+        }else{
+            img = images2
+        }
+
         val dialog = super.onCreateDialog(savedInstanceState)
         if (getArguments() != null) {
             name = getArguments()?.getString("name","");
@@ -253,7 +283,7 @@ class AddListDialog: DialogFragment() {
         dialog.findViewById<TextView>(R.id.popName).text = name
         dialog.findViewById<TextView>(R.id.popDetail).text = detail
         Log.d("naraki", "data;" + imageNum)
-        dialog.findViewById<ImageView>(R.id.popImage).setImageBitmap(BitmapFactory.decodeResource(activity!!.resources, images[imageNum!!]))
+        dialog.findViewById<ImageView>(R.id.popImage).setImageBitmap(BitmapFactory.decodeResource(activity!!.resources, img[imageNum!!]))
 
 
         return dialog
@@ -267,12 +297,25 @@ class AddListDialog: DialogFragment() {
 }
 class fragment_home : android.support.v4.app.Fragment() {
     // TODO: Rename and change types of parameters
+    private lateinit var csvfile: String
+/*
+    companion object {
+        private const val csv = "csvfile"
+        fun createInstance(csvfile:String): fragment_home {
+            val frg = fragment_home()
+            val args = Bundle()
+            args.putString(csv, csvfile)
 
-
+            frg.arguments = args
+            return frg
+        }
+    }
+*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        //**************** APIキーの設定とSDKの初期化 **********************
+        //NCMB.initialize(this, "4be64b73110568a79692b7fced842a43ea7f8330ac9672f490c38b1cae2a04f2", "a6432123d33c4004f4b054151487e7bc25dddbfbdd63ef603400f5e5bd2c981c");
 
 
     }
@@ -281,13 +324,9 @@ class fragment_home : android.support.v4.app.Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-
-
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -295,43 +334,20 @@ class fragment_home : android.support.v4.app.Fragment() {
 
         val assetManager = activity!!.getResources().getAssets()
         val listView = view.findViewById(R.id.listview) as ListView
-        //val list = mutableListOf<openData>()
-        //var i = 0
-/*
-        try {
-            // CSVファイルの読み込み
-            val `is` = assetManager.open("tasteful-buildings.csv")
-            val inputStreamReader = InputStreamReader(`is`)
-            val bufferReader = BufferedReader(inputStreamReader)
-                var line : String?
-            do {
-                line = bufferReader.readLine()
-                if (line == null)
-                    break
-                // 各行が","で区切られていて4つの項目があるとする
-                val st = StringTokenizer(line, ",")
-                val first = st.nextToken()
-                val second = st.nextToken()
-                val third = st.nextToken()
-                val fourth = st.nextToken()
-                //list.add(openData(first,  second, images[i]))
-                Log.d("maita", "data;" + first + " " + second)
-                i++
-            } while (true)
-            bufferReader.close()
+        val list = mutableListOf<openData>()
+        var i = 0
 
-            val adapter = listAdapter(activity!!, list)
-            listView.adapter = adapter
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-*/
         try {
+            val csv = arguments!!.getString("csvfile")
+            var img  = images1
+            if(csv == "tasteful-buildings.csv") {
+                img = images1
+            }else{
+                img = images2
+            }
 
-            val bufferedReader = BufferedReader(InputStreamReader(assetManager.open("tasteful-buildings.csv")))
-            val list = mutableListOf<openData>()
+            val bufferedReader = BufferedReader(InputStreamReader(assetManager.open(csv)))
             var imagei=0
-            var i = 0
             var str = ""
 
             bufferedReader.lineSequence().forEachIndexed() {index, it ->
@@ -346,8 +362,8 @@ class fragment_home : android.support.v4.app.Fragment() {
                 }
                 if (i % 2 == 0) {
                     var columnList = str.split(",")
-                    list.add(openData(columnList[0], columnList[3], images[imagei]))
-                    Log.d("maita", "data;" + columnList[0] + " " + columnList[1] +" " + columnList[2] + " " + imagei)
+                    list.add(openData(columnList[0], columnList[3], img[imagei]))
+                    Log.d("okok", "data;" + columnList[0] + " " + columnList[1] +" " + columnList[2] + " " + imagei)
                     imagei++
                     str = ""
                 } else{
