@@ -21,9 +21,14 @@ import com.google.tanbarin.R.layout.popup_layout
 import android.support.v4.app.DialogFragment
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.os.Parcel
+import android.os.Parcelable
 import android.view.*
 import android.view.Window.FEATURE_NO_TITLE
+import com.google.android.gms.maps.model.LatLng
+import kotlinx.android.parcel.Parcelize
 import java.sql.Array
+import kotlin.collections.ArrayList
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -133,7 +138,7 @@ val images2 = listOf(
 data class openData(val name : String, val desc: String, val imageId: Int)
 data class ViewHolder(val nameTextView: TextView, val descTextView: TextView, val flowerImgView: ImageView)
 
-class listAdapter(context: Context, datas: List<openData>) : ArrayAdapter<openData>(context, 0, datas) {
+class listAdapter(context: Context, datas: List<datalist>) : ArrayAdapter<datalist>(context, 0, datas) {
     private val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -152,7 +157,7 @@ class listAdapter(context: Context, datas: List<openData>) : ArrayAdapter<openDa
             holder = view.tag as ViewHolder
         }
 
-        val opend = getItem(position) as openData
+        val opend = getItem(position) as datalist
         holder.nameTextView.text = opend.name
         holder.descTextView.text = opend.desc
         holder.flowerImgView.setImageBitmap(BitmapFactory.decodeResource(context.resources, opend.imageId))
@@ -295,22 +300,36 @@ class AddListDialog: DialogFragment() {
     }
 */
 }
+@Parcelize
+data class datalist(val name : String, val desc: String, val imageId: Int, val poss:LatLng) : Parcelable
+
 class fragment_home : android.support.v4.app.Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var csvfile: String
-/*
+    private lateinit var listdata : ArrayList<datalist>
+    /*
     companion object {
-        private const val csv = "csvfile"
-        fun createInstance(csvfile:String): fragment_home {
+        fun createInstance( mc : Context): HogeFragment {
+            // インスタンス？　MainActivityで生成時に呼ばれている関数
+            val tmpDetailFragment = HogeFragment()
+            tmpDetailFragment.mContext = mc
+            　        return carDetailFragment
+        }
+    }*/
+
+    companion object {
+        private const val list_dat = "list"
+        fun createInstance(list:MutableList<datalist>): fragment_home {
             val frg = fragment_home()
             val args = Bundle()
-            args.putString(csv, csvfile)
+
+            args.putParcelableArrayList(list_dat, ArrayList(list))
 
             frg.arguments = args
             return frg
         }
     }
-*/
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -331,10 +350,13 @@ class fragment_home : android.support.v4.app.Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val args = arguments
+        if (args == null) {
+        } else {
+            listdata = args.getParcelableArrayList<datalist>(list_dat)!!
+        }
         val assetManager = activity!!.getResources().getAssets()
         val listView = view.findViewById(R.id.listview) as ListView
-        val list = mutableListOf<openData>()
         var i = 0
 
         try {
@@ -345,7 +367,7 @@ class fragment_home : android.support.v4.app.Fragment() {
             }else{
                 img = images2
             }
-
+/*
             val bufferedReader = BufferedReader(InputStreamReader(assetManager.open(csv)))
             var imagei=0
             var str = ""
@@ -371,8 +393,8 @@ class fragment_home : android.support.v4.app.Fragment() {
                 }
                 i=0
             }
-
-            val adapter = listAdapter(activity!!, list)
+*/
+            val adapter = listAdapter(activity!!, listdata)
             listView.adapter = adapter
 
         } catch (e: Exception) {
@@ -398,7 +420,7 @@ class fragment_home : android.support.v4.app.Fragment() {
 
 
 
-            Toast.makeText(activity!!, "clicked: $name", Toast.LENGTH_LONG).show()
+            //Toast.makeText(activity!!, "clicked: $name", Toast.LENGTH_LONG).show()
 
             //アクティビティではインスタンスを生成してshowメソッドを実施するだけ
             val newFlagment = AddListDialog.newInstance()

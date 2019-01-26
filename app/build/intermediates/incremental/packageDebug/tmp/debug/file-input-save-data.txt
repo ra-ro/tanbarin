@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Jan 26 02:58:17 JST 2019
+#Sat Jan 26 07:18:36 JST 2019
 1.base=/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/dex/debug/mergeDexDebug/out
 2.path=tourist-facilities.csv
 0.baseType=DIRECTORY

@@ -2108,6 +2108,10 @@
         "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/446a022126452acfe0f14fabcd3e842a/res/drawable-hdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
+        "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable_style.xml.flat",
+        "source": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/src/main/res/drawable/style.xml"
+    },
+    {
         "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_googleg_disabled_color_18.png.flat",
         "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/play-services-base-16.1.0.aar/0217cb3d3ba0ac26f96c9b98ec405cf6/res/drawable-xhdpi-v4/googleg_disabled_color_18.png"
     },

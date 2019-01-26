@@ -1162,6 +1162,7 @@ drawable omomuki38
 drawable omomuki39
 drawable omomuki40
 drawable sanjo
+drawable style
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable yui
@@ -1233,6 +1234,7 @@ id design_menu_item_action_area
 id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
+id detail
 id dimensions
 id direct
 id disableHome
@@ -1354,6 +1356,7 @@ id snap
 id snapMargins
 id spacer
 id split_action_bar
+id spot_name
 id spread
 id spread_inside
 id src_atop
@@ -1378,7 +1381,6 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
-id textView
 id text_input_password_toggle
 id textinput_counter
 id textinput_error

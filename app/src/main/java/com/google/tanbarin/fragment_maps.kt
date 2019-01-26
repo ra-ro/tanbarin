@@ -48,17 +48,27 @@ import java.util.*
  * create an instance of this fragment.
  *
  */
-
+private lateinit var list_omomuki : ArrayList<datalist>
+private lateinit var list_kankou : ArrayList<datalist>
 
 class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, LocationListener{
     private lateinit var locationManager: LocationManager
     private lateinit var mMap : GoogleMap
 
-    fun newInstance(): fragment_maps {
-        val fragment = newInstance()
-        val args = Bundle()
-        fragment.setArguments(args)
-        return fragment
+    companion object {
+        private const val list_o = "omo"
+        private const val list_k = "kan"
+
+        fun createInstance(list1:MutableList<datalist>, list2:MutableList<datalist>): fragment_maps {
+            val frg = fragment_maps()
+            val args = Bundle()
+
+            args.putParcelableArrayList(list_o, ArrayList(list1))
+            args.putParcelableArrayList(list_k, ArrayList(list2))
+
+            frg.arguments = args
+            return frg
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,6 +113,7 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -118,6 +129,13 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
 
         // Need to call MapsInitializer before doing any CameraUpdateFactory calls
         val gcoder = Geocoder(activity, Locale.getDefault())
+        val args = arguments
+        if (args == null) {
+        } else {
+            list_omomuki = args.getParcelableArrayList<datalist>(fragment_maps.list_o)!!
+            list_kankou = args.getParcelableArrayList<datalist>(fragment_maps.list_k)!!
+
+        }
 
         try {
             MapsInitializer.initialize(activity!!)
@@ -144,6 +162,11 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
             var i = 0
             var str = ""
 
+            list_omomuki.forEachIndexed(){index, it ->
+                Log.d("tomato", it.poss.toString())
+                mMap.addMarker(MarkerOptions().position(it.poss).title(it.name))
+            }
+/*
                 bufferedReader.lineSequence().forEachIndexed() { index, it ->
                     if(index==0) {
                         return@forEachIndexed
@@ -172,7 +195,7 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
                     }
                     i = 0
                 }
-
+*/
         } catch (e: Exception) {
             e.printStackTrace()
         }

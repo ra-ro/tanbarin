@@ -36,13 +36,13 @@ class TestPagerAdapter(fm: FragmentManager, context: Context) : FragmentPagerAda
         when (position) {
             0 -> {
                 frg.arguments = args.apply {
-                    putString("csvfile", "tasteful-buildings.csv")
+                    putParcelableArrayList("list", list_omomuki!!)
                 }
                 return frg
             }
             1 -> {
                 frg.arguments = args.apply {
-                    putString("csvfile", "tourist-facilities.csv")
+                    putParcelableArrayList("list", list_kankou!!)
                 }
                 return frg
             }
@@ -60,6 +60,8 @@ class TestPagerAdapter(fm: FragmentManager, context: Context) : FragmentPagerAda
 }
 
 
+private lateinit var list_omomuki : ArrayList<datalist>
+private lateinit var list_kankou : ArrayList<datalist>
 
 
 class fragment_dash : Fragment() {
@@ -67,6 +69,23 @@ class fragment_dash : Fragment() {
     //********** APIキーの設定 **********
     val applicationKey:String = "4be64b73110568a79692b7fced842a43ea7f8330ac9672f490c38b1cae2a04f2"
     val clientKey:String = "a6432123d33c4004f4b054151487e7bc25dddbfbdd63ef603400f5e5bd2c981c"
+
+
+    companion object {
+        private const val list_o = "omo"
+        private const val list_k = "kan"
+
+        fun createInstance(list1:MutableList<datalist>, list2:MutableList<datalist>): fragment_dash {
+            val frg = fragment_dash()
+            val args = Bundle()
+
+            args.putParcelableArrayList(list_o, ArrayList(list1))
+            args.putParcelableArrayList(list_k, ArrayList(list2))
+
+            frg.arguments = args
+            return frg
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,6 +104,14 @@ class fragment_dash : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val args = arguments
+        if (args == null) {
+        } else {
+            list_omomuki = args.getParcelableArrayList<datalist>(fragment_dash.list_o)!!
+            list_kankou = args.getParcelableArrayList<datalist>(fragment_dash.list_k)!!
+
+        }
         viewPager.adapter = TestPagerAdapter(childFragmentManager, activity!!)
 
         //TabLayoutにViewPagerのインスタンスを渡すと自動的に実装してくれる
