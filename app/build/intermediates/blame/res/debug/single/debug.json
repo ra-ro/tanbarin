@@ -4,12 +4,12 @@
         "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/446a022126452acfe0f14fabcd3e842a/res/drawable-xxhdpi-v4/abc_spinner_mtrl_am_alpha.9.png"
     },
     {
-        "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/layout_abc_tooltip.xml.flat",
-        "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/446a022126452acfe0f14fabcd3e842a/res/layout/abc_tooltip.xml"
-    },
-    {
         "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable_omomuki05.jpg.flat",
         "source": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/src/main/res/drawable/omomuki05.jpg"
+    },
+    {
+        "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/layout_abc_tooltip.xml.flat",
+        "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/446a022126452acfe0f14fabcd3e842a/res/layout/abc_tooltip.xml"
     },
     {
         "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_launcher_background.png.flat",
@@ -96,28 +96,28 @@
         "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/446a022126452acfe0f14fabcd3e842a/res/drawable-xhdpi-v4/abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/play-services-base-16.1.0.aar/0217cb3d3ba0ac26f96c9b98ec405cf6/res/drawable-xhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
-    },
-    {
         "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/anim-v21_design_bottom_sheet_slide_out.xml.flat",
         "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/128082dbd8451e1c6f7e2e6fda7885a4/res/anim-v21/design_bottom_sheet_slide_out.xml"
     },
     {
-        "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_dark_normal.xml.flat",
-        "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/play-services-base-16.1.0.aar/0217cb3d3ba0ac26f96c9b98ec405cf6/res/drawable/common_google_signin_btn_text_dark_normal.xml"
+        "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
+        "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/play-services-base-16.1.0.aar/0217cb3d3ba0ac26f96c9b98ec405cf6/res/drawable-xhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
     },
     {
-        "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/color_mtrl_chip_background_color.xml.flat",
-        "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/128082dbd8451e1c6f7e2e6fda7885a4/res/color/mtrl_chip_background_color.xml"
+        "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_dark_normal.xml.flat",
+        "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/play-services-base-16.1.0.aar/0217cb3d3ba0ac26f96c9b98ec405cf6/res/drawable/common_google_signin_btn_text_dark_normal.xml"
     },
     {
         "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/layout_design_layout_tab_text.xml.flat",
         "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/128082dbd8451e1c6f7e2e6fda7885a4/res/layout/design_layout_tab_text.xml"
+    },
+    {
+        "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/color_mtrl_chip_background_color.xml.flat",
+        "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/128082dbd8451e1c6f7e2e6fda7885a4/res/color/mtrl_chip_background_color.xml"
     },
     {
         "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/interpolator-v21_mtrl_linear_out_slow_in.xml.flat",
@@ -168,12 +168,12 @@
         "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/446a022126452acfe0f14fabcd3e842a/res/color/abc_hint_foreground_material_dark.xml"
     },
     {
-        "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_list_longpressed_holo.9.png.flat",
-        "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/446a022126452acfe0f14fabcd3e842a/res/drawable-hdpi-v4/abc_list_longpressed_holo.9.png"
-    },
-    {
         "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable_kankou03.jpg.flat",
         "source": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/src/main/res/drawable/kankou03.jpg"
+    },
+    {
+        "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_list_longpressed_holo.9.png.flat",
+        "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/446a022126452acfe0f14fabcd3e842a/res/drawable-hdpi-v4/abc_list_longpressed_holo.9.png"
     },
     {
         "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -450,6 +450,10 @@
     {
         "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
         "source": "/Users/yasuhara/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/446a022126452acfe0f14fabcd3e842a/res/drawable-mdpi-v4/abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable_load.png.flat",
+        "source": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/src/main/res/drawable/load.png"
     },
     {
         "merged": "/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/res/merged/debug/drawable_notification_bg.xml.flat",

@@ -1,4 +1,4 @@
-#Sat Jan 26 17:59:50 JST 2019
+#Sat Jan 26 18:56:38 JST 2019
 base.0=/Users/yasuhara/AndroidStudioProjects/tanbarin/app/build/intermediates/dex/debug/mergeDexDebug/out
 path.0=classes.dex
 renamed.0=classes.dex

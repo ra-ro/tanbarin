@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">tanbarin</string>
+    <string name="app_name">HotSprit</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">camera</string>
     <string name="title_maps">Maps</string>
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -1107,6 +1107,7 @@ drawable kankou23
 drawable kankou24
 drawable kankou25
 drawable kankou26
+drawable load
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
