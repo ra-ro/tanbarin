@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -135,7 +136,6 @@ val images2 = listOf(
     R.drawable.kankou25,
     R.drawable.kankou26
 )
-data class openData(val name : String, val desc: String, val imageId: Int)
 data class ViewHolder(val nameTextView: TextView, val descTextView: TextView, val flowerImgView: ImageView)
 
 class listAdapter(context: Context, datas: List<datalist>) : ArrayAdapter<datalist>(context, 0, datas) {
@@ -160,84 +160,11 @@ class listAdapter(context: Context, datas: List<datalist>) : ArrayAdapter<datali
         val opend = getItem(position) as datalist
         holder.nameTextView.text = opend.name
         holder.descTextView.text = opend.desc
-        holder.flowerImgView.setImageBitmap(BitmapFactory.decodeResource(context.resources, opend.imageId))
+        holder.flowerImgView.setImageBitmap(opend.imageId)
 
         return view!!
     }
 }
-/*
-class TestDialog() : DialogFragment() {
-    //ダイアログのタイトルを保存する変数　ただここにタイトルを保存しただけではスマホ縦横時に消えてしまう
-    //var mTitle: String by Delegates.notNull<String>()
-    var mTitle: String = ""
-
-    //コンストラクタで引数を渡すことができないのでBuilderパターンを利用する
-    companion object {
-        //Builderでタイトルを渡し上げて、このクラスのインスタンスを返してあげる
-        fun Builder(title: String): TestDialog {
-            //Bundleを利用してタイトルを一時的に保存する
-            val bundle: Bundle = Bundle().also { it.putString("Title", title) }
-            val testDialog: TestDialog = TestDialog().also { it.arguments = bundle }
-            return testDialog
-        }
-    }
-
-    //onCreate内でメンバ変数に保存すれば、スマホを横に動かしても保存される
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //argumentsから保存したタイトル名を取得するのでメンバ変数に保存する
-        mTitle = arguments?.getString("Title") as String
-    }
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialogBuilder = AlertDialog.Builder(activity!!)
-
-        //タイトルを設定する
-        dialogBuilder.setTitle(mTitle)
-        return dialogBuilder.create()
-    }
-}*/
-/*
-class ConfirmDialog : DialogFragment() {
-
-    var title = "title"
-    var msg = "msg"
-    var okText = "OK"
-    var cancelText = "cancel"
-    /** ok押下時の挙動 */
-    var onOkClickListener : DialogInterface.OnClickListener? = null
-    /** cancel押下時の挙動 デフォルトでは何もしない */
-    var onCancelClickListener : DialogInterface.OnClickListener? = DialogInterface.OnClickListener { _, _ -> }
-
-    companion object {
-        fun newInstance(): ConfirmDialog {
-            val instance = ConfirmDialog()
-            return instance
-        }
-    }
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        // Use the Builder class for convenient dialog construction
-        val builder = AlertDialog.Builder(activity)
-        builder.setTitle(title)
-            .setMessage(msg)
-            .setPositiveButton(okText, onOkClickListener)
-            .setNegativeButton(cancelText, onCancelClickListener)
-        // Create the AlertDialog object and return it
-        return builder.create()
-    }
-    override fun onCreateView(i: LayoutInflater, c: ViewGroup?, b: Bundle?): View? {
-        val content: View = i.inflate(R.layout.popup_layout, c)
-        return content
-    }
-
-    override fun onPause() {
-        super.onPause()
-        // onPause でダイアログを閉じる場合
-        dismiss()
-    }
-}
-*/
 class AddListDialog: DialogFragment() {
 
     companion object {
@@ -249,23 +176,16 @@ class AddListDialog: DialogFragment() {
 
     var name: String? = null
     var detail: String? = null
-    var imageNum: Int? = null
+    var imageNum: Bitmap? = null
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val csv = arguments!!.getString("csvfile")
-        var img  = images1
-        if(csv == "tasteful-buildings.csv") {
-            img = images1
-        }else{
-            img = images2
-        }
 
         val dialog = super.onCreateDialog(savedInstanceState)
         if (getArguments() != null) {
             name = getArguments()?.getString("name","");
             detail = getArguments()?.getString("detail","")
-            imageNum = getArguments()?.getInt("imageNum",0)
+            imageNum = getArguments()?.getParcelable("imageNum")
 
         }
         //val dialog = Dialog(activity!!)
@@ -287,21 +207,15 @@ class AddListDialog: DialogFragment() {
         }
         dialog.findViewById<TextView>(R.id.popName).text = name
         dialog.findViewById<TextView>(R.id.popDetail).text = detail
-        Log.d("naraki", "data;" + imageNum)
-        dialog.findViewById<ImageView>(R.id.popImage).setImageBitmap(BitmapFactory.decodeResource(activity!!.resources, img[imageNum!!]))
+        Log.d("yamaho", "data;" + imageNum)
+        dialog.findViewById<ImageView>(R.id.popImage).setImageBitmap(imageNum)
 
 
         return dialog
     }
-/*
-    override fun onCreateView(i: LayoutInflater, c: ViewGroup?, b: Bundle?): View? {
-        val content: View = i.inflate(R.layout.popup_layout, c)
-        return content
-    }
-*/
 }
 @Parcelize
-data class datalist(val name : String, val desc: String, val imageId: Int, val poss:LatLng) : Parcelable
+data class datalist(val name : String, val desc: String, val imageId: Bitmap, val poss:LatLng) : Parcelable
 
 class fragment_home : android.support.v4.app.Fragment() {
     // TODO: Rename and change types of parameters
@@ -404,21 +318,7 @@ class fragment_home : android.support.v4.app.Fragment() {
         listview.setOnItemClickListener { adapterView, view, position, id ->
             val name = view.findViewById<TextView>(R.id.nameTextView).text
             val detail = view.findViewById<TextView>(R.id.descTextView).text
-            val imageNum = view.findViewById<ImageView>(R.id.buildImage).drawable
-            val imageNum2 = view.findViewById<ImageView>(R.id.buildImage).imageAlpha
-            val imageNum3 = view.findViewById<ImageView>(R.id.buildImage).imageMatrix
-            val imageNum4 = view.findViewById<ImageView>(R.id.buildImage).drawable
-            val imageNum5 = view.findViewById<ImageView>(R.id.buildImage).drawable
-
-
-
-            Log.d("naraki", "data1;" + imageNum)
-            Log.d("naraki", "data2;" + imageNum2)
-            Log.d("naraki", "data3;" + imageNum3)
-            Log.d("naraki", "data4;" + imageNum4)
-            Log.d("naraki", "data5;" + imageNum5)
-
-
+            val imageNum = listdata[position].imageId
 
             //Toast.makeText(activity!!, "clicked: $name", Toast.LENGTH_LONG).show()
 
@@ -427,7 +327,7 @@ class fragment_home : android.support.v4.app.Fragment() {
             val bundle = Bundle()
             bundle.putString("name", name.toString())
             bundle.putString("detail", detail.toString())
-            bundle.putInt("imageNum", position)
+            bundle.putParcelable("imageNum", imageNum)
             newFlagment.setArguments(bundle)
             newFlagment.show(fragmentManager, "dialog")
             //var dialog: ConfirmDialog = ConfirmDialog()

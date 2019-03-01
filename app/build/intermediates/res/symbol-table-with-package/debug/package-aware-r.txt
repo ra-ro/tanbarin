@@ -1081,6 +1081,8 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_notifications_black_24dp
+drawable image
+drawable image2
 drawable kankou01
 drawable kankou02
 drawable kankou03
@@ -1107,7 +1109,6 @@ drawable kankou23
 drawable kankou24
 drawable kankou25
 drawable kankou26
-drawable load
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1279,6 +1280,7 @@ id left
 id light
 id line1
 id line3
+id linearLayout
 id listMode
 id list_item
 id listview

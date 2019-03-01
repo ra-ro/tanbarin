@@ -75,8 +75,8 @@ import kotlin.collections.ArrayList
  */
 
 //********** APIキーの設定 **********
-const val applicationKey:String = "4be64b73110568a79692b7fced842a43ea7f8330ac9672f490c38b1cae2a04f2"
-const val clientKey:String = "a6432123d33c4004f4b054151487e7bc25dddbfbdd63ef603400f5e5bd2c981c"
+const val applicationKey:String = "d8d285600ea72d85f252115ba60abfad241d3ad6c6485c20ad54a9a2d2135498"
+const val clientKey:String = "582f275e0947105e7d9ad29e9140b7f68026ecd081b43b73c5c656adff7632a1"
 
 
 class fragment_noti : Fragment(), LocationListener {
@@ -155,8 +155,14 @@ class fragment_noti : Fragment(), LocationListener {
         obj.saveInBackground { e ->
             if (e != null) {
                 // 保存に失敗した場合の処理
+                AlertDialog.Builder(activity!!)
+                    .setTitle("waiha")
+                    .setMessage("Error:" + e!!.message)
+                    .setPositiveButton("OK", null)
+                    .show()
             } else {
                 // 保存に成功した場合の処理
+
             }
         }
 
@@ -174,7 +180,7 @@ class fragment_noti : Fragment(), LocationListener {
             val bp = data.extras!!.get("data") as Bitmap
             //******* NCMB file upload *******
             val byteArrayStream = ByteArrayOutputStream()
-            bp.compress(Bitmap.CompressFormat.PNG, 0, byteArrayStream)
+            bp.compress(Bitmap.CompressFormat.PNG, 100, byteArrayStream)
             val dataByte = byteArrayStream.toByteArray()
 
             //ACL 読み込み:可 , 書き込み:可
@@ -204,7 +210,8 @@ class fragment_noti : Fragment(), LocationListener {
         val test1: String = DateFormat.format("yyyyMMddkkmmss", date).toString()
         val test2: String = DateFormat.format("yyyyMMddkkmmss", date).toString()
 
-        val file = NCMBFile("s"+ test2 + ".png", dataByte, acl)
+        var fileName = "s"+ test2 + ".png"
+        val file = NCMBFile(fileName, dataByte, acl)
         b1?.visibility = View.INVISIBLE
         pr?.visibility = View.INVISIBLE
         tx_detail?.visibility = View.INVISIBLE
@@ -221,7 +228,7 @@ class fragment_noti : Fragment(), LocationListener {
                     .show()
             } else {
                 //******* NCMB file download *******
-                val file = NCMBFile("test.png")
+                val file = NCMBFile(fileName)
                 file.fetchInBackground { dataFetch, er ->
                     if (er != null) {
                         //失敗処理
@@ -234,7 +241,7 @@ class fragment_noti : Fragment(), LocationListener {
                         //成功処理
                         val bMap = BitmapFactory.decodeByteArray(dataFetch, 0, dataFetch.size)
                         iv?.setImageBitmap(bMap)
-                        data_save(tx_name!!.text.toString(),tx_detail!!.text.toString(), "s"+ test2 + ".png", arrayListOf(ido!!,keido!!), date, "")
+                        data_save(tx_name!!.text.toString(),tx_detail!!.text.toString(), fileName, arrayListOf(ido!!,keido!!), date, "")
                     }
                 }
 
@@ -293,37 +300,7 @@ class fragment_noti : Fragment(), LocationListener {
 
 
     private fun locationStart() {
-        /*
-        Log.d("debug", "locationStart()")
 
-        // Instances of LocationManager class must be obtained using Context.getSystemService(Class)
-        locationManager = activity!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val locationManager = activity!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            Log.d("debug", "location manager Enabled")
-        } else {
-            // to prompt setting up GPS
-            val settingsIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-            startActivity(settingsIntent)
-            Log.d("debug", "not gpsEnable, startActivity")
-        }
-
-        if (ContextCompat.checkSelfPermission(activity!!,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity!!,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1000)
-
-            Log.d("debug", "checkSelfPermission false")
-            return
-        }
-
-        locationManager.requestLocationUpdates(
-            LocationManager.GPS_PROVIDER,
-            1000,
-            50f,
-            this)
-            */
         // Fine か Coarseのいずれかのパーミッションが得られているかチェックする
         // 本来なら、Android6.0以上かそうでないかで実装を分ける必要がある
         locationManager = activity!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -415,14 +392,7 @@ class fragment_noti : Fragment(), LocationListener {
                 Log.d("debug", "LocationProvider.TEMPORARILY_UNAVAILABLE")
         }
     }
-    /*
 
-
-        override fun onResume() {
-            super.onResume()
-
-        }
-    */
     override fun onLocationChanged(location: Location) {
 
         Log.d("ido", location.getLatitude().toString())
@@ -430,30 +400,9 @@ class fragment_noti : Fragment(), LocationListener {
         ido = location.getLatitude()
         keido = location.getLongitude()
 
-        // Latitude
-        //val textView1 = findViewById<TextView>(R.id.text_view1)
-        //val str1 = "Latitude:" + location.getLatitude()
-        //textView1.text = str1
-
-        // Longitude
-        //val textView2 = findViewById<TextView>(R.id.text_view2)
-        //val str2 = "Longtude:" + location.getLongitude()
-        //textView2.text = str2
     }
 
-/*
-    private fun setUpMapIfNeeded() {
-        // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null) {
-            // Try to obtain the map from the SupportMapFragment.
-            mMap = (childFragmentManager.findFragmentById(R.layout.fragment_maps) as SupportMapFragment)
-                .getMap()
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                setUpMap()
-            }
-        }
-    }*/
+
 
     override fun onProviderEnabled(provider: String) {
 
@@ -462,264 +411,6 @@ class fragment_noti : Fragment(), LocationListener {
     override fun onProviderDisabled(provider: String) {
 
     }
-//----------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-//ニフクラ公式のサンプル（Javaをコンバートしただけ)
-//複雑すぎてわかんね
-//https://github.com/NIFCloud-mbaas/GeolocationPush_android
-
-    private var mGoogleApiClient: GoogleApiClient? = null
-
-    private var mGeofenceRequest: GeofencingRequest? = null
-
-    private// We use FLAG_UPDATE_CURRENT so that we get the same pending intent back when
-    // calling addGeofences() and removeGeofences().
-    val geofencePendingIntent: PendingIntent
-        get() {
-
-            val intent = Intent(this, GeofenceTransitionsIntentService::class.java)
-            startActivity(intent)
-
-            return PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-        }
-    override fun onMessageReceived(String from, Bundle data) {
-        //ペイロードデータの取得
-        if (data.containsKey("com.nifty.Data")) {
-            try {
-                JSONObject json = new JSONObject(data.getString("com.nifty.Data"));
-            } catch (JSONException e) {
-                //エラー処理
-                Log.e(TAG, "error:" + e.getMessage());
-            } catch (NCMBException e) {
-                Log.e(TAG, "error:" + e.getMessage());
-            }
-        }
-
-    }
-
-    @Override
-    private fun onMessageReceived(from: String, data: Bundle) {
-
-        //ペイロードデータの取得
-        if (data.containsKey("com.nifty.Data")) {
-            try {
-                val json = JSONObject(data.getString("com.nifty.Data"))
-
-                //Locationデータの取得
-                val point = NCMBObject("Location")
-                point.setObjectId(json.getString("location_id"))
-                point.fetch()
-
-                Log.d(TAG, "location name:" + point.getString("name"))
-
-                //geofenceの作成
-                createGeofenceRequest(point)
-
-                //Google API Clientのビルドと接続
-                connectGoogleApiClient()
-
-
-            } catch (e: JSONException) {
-                //エラー処理
-                Log.e(TAG, "error:" + e.getMessage())
-            } catch (e: NCMBException) {
-                Log.e(TAG, "error:" + e.getMessage())
-            }
-
-        }
-
-        //デフォルトの通知を実行する場合はsuper.onMessageReceivedを実行する
-        //super.onMessageReceived(from, data);
-    }
-
-    @Synchronized
-    protected fun connectGoogleApiClient() {
-        var mGoogleApiClient = GoogleApiClient.Builder(activity!!)
-            .addConnectionCallbacks(activity!!)
-            .addOnConnectionFailedListener(activity!!)
-            .addApi(LocationServices.API)
-            .build()
-
-        mGoogleApiClient!!.connect()
-    }
-
-    private fun createGeofenceRequest(point: NCMBObject) {
-
-        //Geofenceオブジェクトの作成
-        val geofence = Geofence.Builder()
-            .setRequestId(point.getString("name"))
-            .setCircularRegion(
-                point.getGeolocation("geo").getLatitude(),
-                point.getGeolocation("geo").getLongitude(),
-                GEOFENCE_RADIUS_IN_METERS
-            )
-            .setExpirationDuration(GEOFENCE_EXPIRATION_IN_MILLISECONDS)
-            .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER or Geofence.GEOFENCE_TRANSITION_EXIT)
-            .build()
-
-        val builder = GeofencingRequest.Builder()
-        builder.setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
-        builder.addGeofence(geofence)
-        mGeofenceRequest = builder.build()
-    }
-
-    @Override
-    fun onConnected(bundle: Bundle) {
-        Log.d(TAG, "Connection Succeeded.")
-
-        val preferences: SharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-        val geofenceName = preferences.getString(GEOFENCE_NAME, "")
-
-        if (!geofenceName.equals("")) {
-            LocationServices.GeofencingApi.removeGeofences(
-                mGoogleApiClient,
-                Arrays.asList(geofenceName)
-            )
-        }
-
-        val editor = preferences.edit()
-        editor.putString(
-            GEOFENCE_NAME,
-            mGeofenceRequest!!.getGeofences().get(0).getRequestId()
-        )
-
-        LocationServices.GeofencingApi.addGeofences(
-            mGoogleApiClient,
-            mGeofenceRequest,
-            geofencePendingIntent
-        ).setResultCallback(this)
-    }
-
-    @Override
-    fun onConnectionSuspended(i: Int) {
-        Log.d(TAG, "Connection Suspended")
-    }
-
-    @Override
-    fun onConnectionFailed(connectionResult: ConnectionResult) {
-        Log.d(TAG, "Connection Failed")
-    }
-
-    @Override
-    fun onResult(result: Result) {
-        Log.d(TAG, "onResult:" + result.toString())
-    }
-
-    @Override
-    fun onDestroy() {
-        Log.d(TAG, "Gcm service is destroyed...")
-        super.onDestroy()
-    }
-
-    companion object {
-
-        protected val TAG = "CustomListenerService"
-
-        protected val GEOFENCE_RADIUS_IN_METERS = 500
-
-        protected val GEOFENCE_EXPIRATION_IN_HOURS = 1
-
-        protected val GEOFENCE_EXPIRATION_IN_MILLISECONDS =
-            GEOFENCE_EXPIRATION_IN_HOURS * 60 * 60 * 1000
-
-        protected val PREFS_NAME = "GeolocationPush"
-
-        protected val GEOFENCE_NAME = "GeofenceName"
-    }
-}
-*/
-
-
-/*
-    //------------以下データストア関連（現在位置）-----------------------------
-
-    //https://qiita.com/hiro_hosono/items/54ff78376b0993b822f7
-
-    data class itiInfo (
-        var genzaiido:String = "",
-        var genzaikeido:String = ""
-    )
-    {
-
-    }
-
-    //↓データストアの読み出し
-    fun getitiinfo(genzaiido:String) : itiInfo {
-        val genzaiiti = itiInfo()
-
-        genzaiiti.genzaiido = genzaiido
-        val query: NCMBQuery<NCMBObject> = NCMBQuery("iti")
-        query.whereEqualTo("genzaiido",genzaiido)
-        val results: List<NCMBObject> = try {
-            query.find()
-        } catch (e : Exception) { emptyList<NCMBObject>() }
-        if (results.isNotEmpty()) {
-            val result = results[0]
-            genzaiiti.genzaikeido = result.getString("genzaikeido")
-        }
-        return genzaiiti
-
-    }
-
-
-    //↓データストアへの追加
-    fun addtiti(iti:itiInfo) {
-
-        val obj = NCMBObject("itiInfo")
-
-        obj.put("genzaikeido", itiInfo.genzaikeido)
-        obj.put("genzaiido", company.genzaiido)
-
-        try {
-            obj.save()
-        } catch (e : Exception) {
-            println("data save error : " + e.cause.toString())
-        }
-    }
-
-    //↓データストアの更新
-    fun updateiti(company:itiInfo) {
-
-        val query: NCMBQuery<NCMBObject> = NCMBQuery("genzaiiti")
-        query.whereEqualTo("genzaiido", company.genzaiido)
-
-        val results: List<NCMBObject> = try {
-            query.find()
-        } catch (e: Exception) {
-            emptyList<NCMBObject>()
-        }
-        if (results.isNotEmpty()) {
-            val obj = results[0]
-            obj.put("genzaikeido", company.genzaikeido)
-            obj.put("genzaiido", company.genzaiido)
-
-            try {
-                obj.save()
-            } catch (e: Exception) {
-                println("company data save error : " + e.cause.toString())
-            }
-        }
-    }
-
-*/
-
 
 }
 

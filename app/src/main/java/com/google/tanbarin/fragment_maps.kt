@@ -50,6 +50,7 @@ import java.util.*
  */
 private lateinit var list_omomuki : ArrayList<datalist>
 private lateinit var list_kankou : ArrayList<datalist>
+private lateinit var list_userdata : ArrayList<datalist>
 
 class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, LocationListener{
     private lateinit var locationManager: LocationManager
@@ -58,13 +59,15 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
     companion object {
         private const val list_o = "omo"
         private const val list_k = "kan"
+        private const val list_u = "use"
 
-        fun createInstance(list1:MutableList<datalist>, list2:MutableList<datalist>): fragment_maps {
+        fun createInstance(list1:MutableList<datalist>, list2:MutableList<datalist>, list3:MutableList<datalist>): fragment_maps {
             val frg = fragment_maps()
             val args = Bundle()
 
             args.putParcelableArrayList(list_o, ArrayList(list1))
             args.putParcelableArrayList(list_k, ArrayList(list2))
+            args.putParcelableArrayList(list_u, ArrayList(list2))
 
             frg.arguments = args
             return frg
@@ -134,6 +137,8 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
         } else {
             list_omomuki = args.getParcelableArrayList<datalist>(fragment_maps.list_o)!!
             list_kankou = args.getParcelableArrayList<datalist>(fragment_maps.list_k)!!
+            list_userdata = args.getParcelableArrayList<datalist>(fragment_maps.list_u)!!
+
 
         }
 
@@ -145,57 +150,19 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
 
         mMap = googlemap
         Log.d("maita", "datadatata;")
-
-        val hanedaAirport = LatLng(35.5554, 139.7544)
-        val kankuAirport = LatLng(34.4320024, 135.2303939)
         val hirosakieki = LatLng(40.599257, 140.4851)
-
-
 
 
         //地図へのマーカーの設定方法
         mMap.addMarker(MarkerOptions().position(hirosakieki).title("弘前駅"))
-        val assetManager = activity!!.getResources().getAssets()
 
         try {
-            val bufferedReader = BufferedReader(InputStreamReader(assetManager.open("tasteful-buildings.csv")))
-            var i = 0
-            var str = ""
 
             list_omomuki.forEachIndexed(){index, it ->
                 Log.d("tomato", it.poss.toString())
                 mMap.addMarker(MarkerOptions().position(it.poss).title(it.name))
             }
-/*
-                bufferedReader.lineSequence().forEachIndexed() { index, it ->
-                    if(index==0) {
-                        return@forEachIndexed
-                    }
-                    str += it
-                    str.toList().forEach {
-                        if (it == '\"') {
-                            i++
-                        }
-                    }
-                    if (i % 2 == 0) {
-                        var columnList = str.split(",")
-                        Log.d("naraki", columnList[7] + " " + columnList[8])
-                        var posadd = gcoder.getFromLocationName(columnList[1].toString(), 1)
-                        if (posadd != null) {
-                            var pos = posadd.get(0)
-                            var lat = pos.latitude
-                            var lng = pos.longitude
-                            var poss = LatLng(lat, lng)
-                            Log.d("maita", columnList[0])
-                            mMap.addMarker(MarkerOptions().position(poss).title(columnList[0]))
-                        }
-                        str = ""
-                    } else {
 
-                    }
-                    i = 0
-                }
-*/
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -236,77 +203,6 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
     }
 
 
-    private fun setUpMap() {
-        // mMap.getUiSettings().setZoomControlsEnabled(true)//拡大縮小ボタン表示
-        val sydney = LatLng(40.0, 133.0)
-        val test= "data"
-        val test2="omese"
-        if (mMap == null) {
-            Log.d("maita", "data;" )
-            println("$test")
-        }
-        println("$test2")
-        Log.d("maita", "datadatata;" )
-        // Add a marker in Sydney and move the camera
-        mMap.addMarker(MarkerOptions().position(sydney).title("tgdusdfg"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15F))
-    }
-
-
-
-/*
-    private fun locationStart() {
-        Log.d("debug", "locationStart()")
-
-        // Instances of LocationManager class must be obtained using Context.getSystemService(Class)
-        locationManager = activity!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val locationManager = activity!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            Log.d("debug", "location manager Enabled")
-        } else {
-            // to prompt setting up GPS
-            val settingsIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-            startActivity(settingsIntent)
-            Log.d("debug", "not gpsEnable, startActivity")
-        }
-
-        if (ContextCompat.checkSelfPermission(activity!!,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity!!,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1000)
-
-            Log.d("debug", "checkSelfPermission false")
-            return
-        }
-
-        locationManager.requestLocationUpdates(
-            LocationManager.GPS_PROVIDER,
-            1000,
-            50f,
-            this)
-
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        if (requestCode == 1000) {
-            // 使用が許可された
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Log.d("debug", "checkSelfPermission true")
-                // 位置測定を始めるコードへ跳ぶ
-                locationStart()
-
-            }else {
-                // それでも拒否された時の対応
-                val toast = Toast.makeText(activity!!,
-                    "これ以上なにもできません", Toast.LENGTH_SHORT)
-                toast.show()
-            }
-        }
-
-    }
-*/
     override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {
         when (status) {
             LocationProvider.AVAILABLE ->
@@ -317,14 +213,6 @@ class fragment_maps : android.support.v4.app.Fragment(), OnMapReadyCallback, Loc
                 Log.d("debug", "LocationProvider.TEMPORARILY_UNAVAILABLE")
         }
     }
-/*
-
-
-    override fun onResume() {
-        super.onResume()
-
-    }
-*/
     override fun onLocationChanged(location: Location) {
         // Latitude
         //val textView1 = findViewById<TextView>(R.id.text_view1)

@@ -44,7 +44,8 @@ import org.json.JSONException
 import java.io.ByteArrayOutputStream
 import java.util.*
 import android.content.SharedPreferences
-
+import kotlin.collections.ArrayList
+import kotlin.math.log
 
 
 
@@ -65,97 +66,38 @@ class fragment_push: Fragment() {
         return inflater.inflate(R.layout.fragment_push, container, false)
     }
 
+
+    internal var listuser: MutableList<datalist>? = mutableListOf<datalist>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //**************** APIキーの設定とSDKの初期化 **********************
         NCMB.initialize(
             activity!!,
-            "4be64b73110568a79692b7fced842a43ea7f8330ac9672f490c38b1cae2a04f",
-            "a6432123d33c4004f4b054151487e7bc25dddbfbdd63ef603400f5e5bd2c981c"
+            applicationKey,
+            clientKey
         )
-        var id: String? = null
-        var url: String? = null
-        try {
-            val tmpBlank = JSONObject("{'No key':'No value'}")
-            val lv = view.findViewById<ListView>(R.id.listview) //as ListView
-            if (lv != null) {
-                //lv.adapter = ListAdapter(activity!!, tmpBlank)
-            }
 
-            // **************** ペイロード、リッチプッシュを処理する ***************
-            val intent = Intent()
+        val query = NCMBQuery<NCMBObject>("SaveObject")
+        query.addOrderByAscending("updateDate")
+        query.setLimit(10)
 
-            //プッシュ通知IDを表示
-            Toast.makeText(activity!!, "clicked: $id", Toast.LENGTH_LONG).show()
-            //_pushId = dialog.findViewById<TextView>(R.id._pushId) .text = id
-            val pushid = intent.getStringExtra("com.nifcloud.mbaas.PushId")
-            _pushId.text = pushid
-
-            //RichURLを表示
-            //_richurl = dialog.findViewById<TextView>(R.id.txtRichurl) .text = url
-            Toast.makeText(activity!!, "clicked: $url", Toast.LENGTH_LONG).show()
-            val richurl = intent.getStringExtra("com.nifcloud.mbaas.RichUrl")
-            _richurl.text = richurl
-
-            //プッシュ通知のペイロードを表示
-            if (intent.getStringExtra("com.nifcloud.mbaas.Data") != null) {
-            try {
-            val json = JSONObject(intent.getStringExtra("com.nifcloud.mbaas.Data"))
-            if (json != null) {
-            //val lv = dialog.findViewById<View>(R.id.lsJson) as ListView
-            //lv.adapter = ListAdapter(activity!!, json)
-            }
-            } catch (e: JSONException) {
-            //エラー処理
-            }
+        query.findInBackground { result, e ->
+            if (e != null) {
+                AlertDialog.Builder(activity!!)
+                    .setTitle("waiha")
+                    .setMessage("Error:" + e!!.message)
+                    .setPositiveButton("OK", null)
+                    .show()
+            } else {
+                // 保存に成功した場合の処理
+                result.forEachIndexed { index, ncmbObject ->
+                    Log.d("asdfg", ncmbObject.getString("detail").toString())
+                }
 
             }
-            intent.removeExtra("com.nifcloud.mbaas.RichUrl")
-            //return dialog
-
-
-            //Toast.makeText(activity!!, "clicked: $name", Toast.LENGTH_LONG).show()
-
-        } catch (e: JSONException) {
-            e.printStackTrace()
         }
 
-/**/
     }
 }
-    //var id: String? = null
-    //var url: String? = null
-// //override fun onResume() {
-// override fun onCreateDialog(savedInstanceState: Bundle?,data: Intent?): Dialog {
-// val dialog = super.onCreateDialog(savedInstanceState)
-//
-// //**************** ペイロード、リッチプッシュを処理する ***************
-// val intent = Intent()
-//
-// //プッシュ通知IDを表示
-// _pushId = dialog.findViewById<TextView>(R.id._pushId) .text = id
-// val pushid = intent.getStringExtra("com.nifcloud.mbaas.PushId")
-// _pushId.text = pushid
-//
-// //RichURLを表示
-// _richurl = dialog.findViewById<TextView>(R.id.txtRichurl) .text = url
-// val richurl = intent.getStringExtra("com.nifcloud.mbaas.RichUrl")
-// _richurl.text = richurl
-//
-// //プッシュ通知のペイロードを表示
-// if (intent.getStringExtra("com.nifcloud.mbaas.Data") != null) {
-// try {
-// val json = JSONObject(intent.getStringExtra("com.nifcloud.mbaas.Data"))
-// if (json != null) {
-// val lv = dialog.findViewById<View>(R.id.lsJson) as ListView
-// lv.adapter = ListAdapter(this, json)
-// }
-// } catch (e: JSONException) {
-// //エラー処理
-// }
-//
-// }
-// intent.removeExtra("com.nifcloud.mbaas.RichUrl")
-// //return dialog
-// }

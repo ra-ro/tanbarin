@@ -1,21 +1,24 @@
 package com.google.tanbarin
 
+import android.app.AlertDialog
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.BitmapFactory
 import android.location.Geocoder
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.nifcloud.mbaas.core.*
 import kotlinx.android.synthetic.main.activity_main.*
-import com.nifcloud.mbaas.core.NCMB
-import com.nifcloud.mbaas.core.NCMBAcl
-import com.nifcloud.mbaas.core.NCMBFile
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.*
+import kotlin.coroutines.coroutineContext
 
 
 data class openDataMain(val name : String, val desc: String, val imageId: Int, val poss:LatLng)
@@ -118,7 +121,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.navigation_home -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame, fragment_home.createInstance(list_omomuki!!))
+                    .replace(R.id.frame, fragment_home.createInstance(list_userdata!!))
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
@@ -136,7 +139,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.navigation_maps -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame, fragment_maps.createInstance(list_omomuki!!, list_kankou!!))
+                    .replace(R.id.frame, fragment_maps.createInstance(list_omomuki!!, list_kankou!!, list_userdata!!))
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }
@@ -145,6 +148,8 @@ class MainActivity : AppCompatActivity() {
     }
     internal var list_omomuki: MutableList<datalist>? = mutableListOf<datalist>()
     internal var list_kankou: MutableList<datalist>? = mutableListOf<datalist>()
+    internal var list_userdata: MutableList<datalist>? = mutableListOf<datalist>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)  //superコールの前にスタイル設定（LauncherScreenを入れたので）
@@ -179,7 +184,7 @@ class MainActivity : AppCompatActivity() {
                         var lng = pos.longitude
                         poss = LatLng(lat, lng)
                     }
-                    list_omomuki!!.add(datalist(columnList[0], columnList[3], images1[imagei], poss))
+                    list_omomuki!!.add(datalist(columnList[0], columnList[3], BitmapFactory.decodeResource(getResources(),images1[imagei]), poss))
                     Log.d("naraki", poss.toString())
                     imagei++
                     str = ""
@@ -219,13 +224,78 @@ class MainActivity : AppCompatActivity() {
                         var lng = pos.longitude
                         poss = LatLng(lat, lng)
                     }
-                    list_kankou!!.add(datalist(columnList[0], columnList[3], images2[imagei], poss))
+                    list_kankou!!.add(datalist(columnList[0], columnList[3], BitmapFactory.decodeResource(getResources(),images2[imagei]), poss))
                     imagei++
                     str = ""
                 } else {
 
                 }
                 i = 0
+            }
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        i = 0
+        str = ""
+        imagei=0
+        poss = LatLng(0.0,0.0)
+
+        try {
+            //**************** APIキーの設定とSDKの初期化 **********************
+            NCMB.initialize(
+                this!!,
+                applicationKey,
+                clientKey
+            )
+
+            val query = NCMBQuery<NCMBObject>("SaveObject")
+            query.addOrderByAscending("updateDate")
+            query.setLimit(10)
+
+            query.findInBackground { result, e ->
+                if (e != null) {
+                    /*
+                    AlertDialog.Builder(this!!)
+                        .setTitle("waiha")
+                        .setMessage("Error:" + e!!.message)
+                        .setPositiveButton("OK", null)
+                        .show()
+                    */
+
+                } else {
+                    // 保存に成功した場合の処理
+                    result.forEachIndexed { index, ncmbObject ->
+                        Log.d("asdfg", ncmbObject.getString("detail").toString())
+                        var sptName =  ncmbObject.getString("spot_name").toString()
+                        var sptDetail =  ncmbObject.getString("detail").toString()
+                        var sptLct:MutableList<Double> = ncmbObject.getList("location") as MutableList<Double>
+                        var sptLcts = LatLng(sptLct[0], sptLct[1])
+                        var sptImg = ncmbObject.getString("image_name").toString()
+
+                        //******* NCMB file download *******
+
+                        val file = NCMBFile(sptImg)
+                        file.fetchInBackground { dataFetch, er ->
+                            if (er != null) {
+                                //失敗処理
+                                AlertDialog.Builder(this!!)
+                                    .setTitle("Notification from NIFCloud")
+                                    .setMessage("Error:" + er.message)
+                                    .setPositiveButton("OK", null)
+                                    .show()
+                            } else {
+                                //成功処理
+                                val bMap = BitmapFactory.decodeByteArray(dataFetch, 0, dataFetch.size)
+                                list_userdata!!.add(datalist(sptName, sptDetail, bMap, sptLcts))
+
+                            }
+                        }
+
+                    }
+
+                }
             }
 
         } catch (e: Exception) {
